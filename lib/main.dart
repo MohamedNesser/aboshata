@@ -7,7 +7,13 @@ import 'package:graduationproject/bloc/signup/cubit/signup_cubit.dart';
 import 'package:graduationproject/data/api_services/api_servicese.dart';
 import 'package:graduationproject/data/api_services/dio_services.dart';
 import 'package:graduationproject/presantion/screens/Login_screen/login_page.dart';
+import 'package:graduationproject/presantion/screens/add_person/add_persone.dart';
+import 'package:graduationproject/presantion/screens/find_your_lost/find_home_screen.dart';
+import 'package:graduationproject/presantion/screens/home_screen/buttom_navigation/buttom_navigation.dart';
+import 'package:graduationproject/presantion/screens/home_screen/home_screen.dart';
 import 'package:graduationproject/presantion/screens/signup_screen/signup_screen.dart';
+import 'package:graduationproject/presantion/screens/splash_screen/splash.dart';
+import 'package:graduationproject/presantion/widgets/test.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +37,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: LoginScreen(),
+          home: ButtomNavigation(),
         ),
       ),
     );

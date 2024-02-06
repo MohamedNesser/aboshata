@@ -1,7 +1,7 @@
 import 'package:graduationproject/data/api_services/api_servicese.dart';
 import 'package:dio/dio.dart';
 import 'package:graduationproject/data/api_services/end_pointes.dart';
-import 'package:graduationproject/data/errors/error_model.dart';
+import 'package:graduationproject/data/errors/failuer.dart';
 
 import '../errors/server_excaption.dart';
 
@@ -70,8 +70,8 @@ class DioServices extends ApiServices {
       var response = await dio.post(path,
           data: isFormData ? FormData.fromMap(data) : data,
           queryParameters: quereyprameters);
-    } on DioException catch (e) {
-      handleDioExceptions(e);
+    } on failuer catch (e) {
+      websrvicefailuer(e.errormassage);
     }
   }
 }

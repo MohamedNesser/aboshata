@@ -62,8 +62,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Image.asset(
-                          "assets/images/WhatsApp Image 2023-10-07 at 11.03 1.png"),
+                      Image.asset("assets/images/image1.png"),
                       FormSiginup(),
                       TextButton(
                         onPressed: () {

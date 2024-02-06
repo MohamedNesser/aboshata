@@ -1,7 +1,7 @@
 class EndPoint {
-  static String baseurl = "your baseurl";
-  static String loginurl = "your login url";
-  static String signupurl = 'uer signup url';
+  static String baseurl = "https://lostcal-hnev.onrender.com/";
+  static String loginurl = "user/login";
+  static String signupurl = 'user/signup';
 }
 
 class ApiKeys {

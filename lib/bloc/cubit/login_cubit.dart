@@ -2,8 +2,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:graduationproject/data/api_services/end_pointes.dart';
+import 'package:graduationproject/data/errors/failuer.dart';
 import 'package:graduationproject/data/errors/server_excaption.dart';
-import 'package:meta/meta.dart';
 
 import 'package:graduationproject/data/api_services/api_servicese.dart';
 
@@ -27,8 +27,8 @@ class LoginCubit extends Cubit<LoginState> {
       });
       emit(Loginsucsess());
       return response;
-    } on ServerException catch (e) {
-      emit(Loginfaliouer(errormassage: e.errModel.message));
+    } on failuer catch (e) {
+      emit(Loginfaliouer(errormassage: e.errormassage));
     }
   }
 }

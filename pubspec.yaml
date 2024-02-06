@@ -38,6 +38,7 @@ dependencies:
   flutter_bloc:
   dio:
   flutter_screenutil:
+  persistent_bottom_nav_bar:
   
 
 dev_dependencies:
