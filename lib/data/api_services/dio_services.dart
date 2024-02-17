@@ -1,6 +1,7 @@
 import 'package:graduationproject/data/api_services/api_servicese.dart';
 import 'package:dio/dio.dart';
 import 'package:graduationproject/data/api_services/end_pointes.dart';
+import 'package:graduationproject/data/api_services/intercaptor.dart';
 import 'package:graduationproject/data/errors/failuer.dart';
 
 import '../errors/server_excaption.dart';
@@ -11,6 +12,7 @@ class DioServices extends ApiServices {
 
   DioServices(this.dio) {
     dio.options.baseUrl = EndPoint.baseurl;
+    dio.interceptors.add(ApiInterseptor());
     dio.interceptors.add(LogInterceptor(
         error: true,
         request: true,
@@ -67,11 +69,12 @@ class DioServices extends ApiServices {
       Map<String, dynamic>? quereyprameters,
       bool isFormData = false}) async {
     try {
-      var response = await dio.post(path,
+      final response = await dio.post(path,
           data: isFormData ? FormData.fromMap(data) : data,
           queryParameters: quereyprameters);
-    } on failuer catch (e) {
-      websrvicefailuer(e.errormassage);
+      return response.data;
+    } on DioException catch (e) {
+      handleDioExceptions(e);
     }
   }
 }

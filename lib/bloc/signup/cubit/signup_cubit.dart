@@ -5,6 +5,9 @@ import 'package:graduationproject/bloc/signup/cubit/signup_state.dart';
 import 'package:graduationproject/data/api_services/api_servicese.dart';
 import 'package:graduationproject/data/api_services/end_pointes.dart';
 import 'package:graduationproject/data/errors/server_excaption.dart';
+import 'package:graduationproject/data/model/signup_model.dart';
+import 'package:graduationproject/data/sherdp_referense/cash_helper.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit(
@@ -15,6 +18,7 @@ class SignupCubit extends Cubit<SignupState> {
   final TextEditingController confarmepasController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final ApiServices api;
+  signupmodel? usersignup;
 
   Future Signup() async {
     try {
@@ -24,10 +28,16 @@ class SignupCubit extends Cubit<SignupState> {
         ApiKeys.email: emailController.text,
         ApiKeys.password: passwordController.text
       });
+
+      usersignup = signupmodel.fromJson(response);
+      final mytoken = JwtDecoder.decode(usersignup!.token);
+      CacheHelper().saveData(key: ApiKeys.token, value: usersignup!.token);
+      CacheHelper().saveData(key: ApiKeys.id, value: mytoken[ApiKeys.id]);
       emit(signupsucsess());
       return response;
     } on ServerException catch (e) {
-      emit(signupfaliouer(errormassage: e.errModel.message));
+      emit(
+          signupfaliouer(errormassage: e.errorsignp.errors![2].msg.toString()));
     }
   }
 }

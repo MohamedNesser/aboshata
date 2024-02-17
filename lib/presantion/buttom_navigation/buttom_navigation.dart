@@ -51,7 +51,7 @@ class ButtomNavigation extends StatelessWidget {
 }
 
 List<Widget> _buildScreens() {
-  return [HomeScreen(), LoginScreen(), SignUpScreen(), InfoScreen()];
+  return [HomeScreen(), InfoScreen(), InfoScreen(), InfoScreen()];
 }
 
 List<PersistentBottomNavBarItem> _navBarsItems() {

@@ -41,31 +41,34 @@ class AddPersone extends StatelessWidget {
               Positioned(
                 top: 60.h,
                 left: MediaQuery.of(context).size.width / 4,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 3, 7, 27),
-                      borderRadius: BorderRadius.circular(30)),
-                  height: 140.h,
-                  width: 160.w,
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        "assets/images/image-gallery 1.png",
-                        fit: BoxFit.cover,
-                        width: 100.w,
-                        height: 100,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Add Images ",
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.white,
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 3, 7, 27),
+                        borderRadius: BorderRadius.circular(30)),
+                    height: 140.h,
+                    width: 160.w,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/image-gallery 1.png",
+                          fit: BoxFit.cover,
+                          width: 100.w,
+                          height: 100,
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Add Images ",
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               )

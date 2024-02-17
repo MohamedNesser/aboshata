@@ -2,13 +2,15 @@
 import 'package:flutter/material.dart';
 
 class CuctomTextField extends StatelessWidget {
-  const CuctomTextField({
-    Key? key,
-    required this.labeltext,
-    required this.icon,
-  }) : super(key: key);
+  const CuctomTextField(
+      {Key? key,
+      required this.labeltext,
+      required this.icon,
+      required this.controller})
+      : super(key: key);
   final String labeltext;
   final Icon icon;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Container(

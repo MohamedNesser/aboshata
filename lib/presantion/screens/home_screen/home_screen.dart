@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduationproject/presantion/screens/add_person/add_persone.dart';
 import 'package:graduationproject/presantion/screens/find_your_lost/find_home_screen.dart';
-import 'package:graduationproject/presantion/screens/home_screen/buttom_navigation/buttom_navigation.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

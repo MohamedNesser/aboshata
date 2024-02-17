@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduationproject/bloc/signup/cubit/signup_cubit.dart';
 import 'package:graduationproject/bloc/signup/cubit/signup_state.dart';
+import 'package:graduationproject/presantion/buttom_navigation/buttom_navigation.dart';
 import 'package:graduationproject/presantion/screens/info_screen/info_screen.dart';
 
 class FormSiginup extends StatefulWidget {
@@ -22,7 +23,7 @@ class _FormSiginupState extends State<FormSiginup> {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(" التسجيل بنجاح")));
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => InfoScreen()));
+            .push(MaterialPageRoute(builder: (context) => ButtomNavigation()));
       } else if (state is signupfaliouer) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(state.errormassage)));
