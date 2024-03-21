@@ -5,6 +5,7 @@ import 'package:graduationproject/bloc/signup/cubit/signup_cubit.dart';
 import 'package:graduationproject/bloc/signup/cubit/signup_state.dart';
 import 'package:graduationproject/presantion/buttom_navigation/buttom_navigation.dart';
 import 'package:graduationproject/presantion/screens/info_screen/info_screen.dart';
+import 'package:graduationproject/presantion/screens/user/user_screen.dart';
 
 class FormSiginup extends StatefulWidget {
   const FormSiginup({Key? key}) : super(key: key);
@@ -22,8 +23,8 @@ class _FormSiginupState extends State<FormSiginup> {
       if (state is signupsucsess) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(" التسجيل بنجاح")));
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ButtomNavigation()));
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => BottomNavBarscreen()));
       } else if (state is signupfaliouer) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(state.errormassage)));
@@ -36,8 +37,14 @@ class _FormSiginupState extends State<FormSiginup> {
             key: _globalekey,
             child: Column(
               children: [
+                Text(
+                  "Email or Phone Number            ",
+                  style: TextStyle(
+                      fontSize: 14.sp, color: Color(0x00000000ffE9E9E9)),
+                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.8,
+                  height: MediaQuery.of(context).size.width / 9,
                   child: TextFormField(
                     controller: context.read<SignupCubit>().emailController,
                     validator: (value) {
@@ -63,8 +70,14 @@ class _FormSiginupState extends State<FormSiginup> {
                 SizedBox(
                   height: 5.h,
                 ),
+                Text(
+                  "Your Name                                    ",
+                  style: TextStyle(
+                      fontSize: 14.sp, color: Color(0x00000000ffE9E9E9)),
+                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.8,
+                  height: MediaQuery.of(context).size.width / 9,
                   child: TextFormField(
                     controller: context.read<SignupCubit>().nameController,
                     validator: (value) {
@@ -90,8 +103,14 @@ class _FormSiginupState extends State<FormSiginup> {
                 SizedBox(
                   height: 5.h,
                 ),
+                Text(
+                  " Password                                   ",
+                  style: TextStyle(
+                      fontSize: 14.sp, color: Color(0x00000000ffE9E9E9)),
+                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.8,
+                  height: MediaQuery.of(context).size.width / 9,
                   child: TextFormField(
                     controller: context.read<SignupCubit>().passwordController,
                     validator: (value) {
@@ -115,8 +134,14 @@ class _FormSiginupState extends State<FormSiginup> {
                 SizedBox(
                   height: 5.h,
                 ),
+                Text(
+                  "  Confirm Password                      ",
+                  style: TextStyle(
+                      fontSize: 14.sp, color: Color(0x00000000ffE9E9E9)),
+                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.8,
+                  height: MediaQuery.of(context).size.width / 9,
                   child: TextFormField(
                     controller:
                         context.read<SignupCubit>().confarmepasController,

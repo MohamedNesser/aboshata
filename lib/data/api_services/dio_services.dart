@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:graduationproject/data/api_services/end_pointes.dart';
 import 'package:graduationproject/data/api_services/intercaptor.dart';
 import 'package:graduationproject/data/errors/failuer.dart';
+import 'package:graduationproject/data/sherdp_referense/cash_helper.dart';
 
 import '../errors/server_excaption.dart';
 
@@ -13,6 +14,8 @@ class DioServices extends ApiServices {
   DioServices(this.dio) {
     dio.options.baseUrl = EndPoint.baseurl;
     dio.interceptors.add(ApiInterseptor());
+    // dio.options.headers['Authorization'] =
+    //     CacheHelper().getData(key: ApiKeys.token);
     dio.interceptors.add(LogInterceptor(
         error: true,
         request: true,
@@ -51,7 +54,7 @@ class DioServices extends ApiServices {
 
   @override
   Future get(String path,
-      {data,
+      {dynamic data,
       Map<String, dynamic>? queryparametrs,
       bool isFormData = false}) async {
     try {
@@ -65,7 +68,7 @@ class DioServices extends ApiServices {
 
   @override
   Future post(String path,
-      {data,
+      {dynamic data,
       Map<String, dynamic>? quereyprameters,
       bool isFormData = false}) async {
     try {

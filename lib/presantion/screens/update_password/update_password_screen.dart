@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduationproject/bloc/signup/cubit/signup_state.dart';
 import 'package:graduationproject/presantion/screens/Login_screen/login_widgets/form_login.dart';
-import 'package:graduationproject/presantion/screens/Login_screen/login_widgets/new_sumbit.dart';
-import 'package:graduationproject/presantion/screens/signup_screen/signup_screen.dart';
+import 'package:graduationproject/presantion/screens/update_password/form_update.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class UpdatePasswordScreen extends StatelessWidget {
+  const UpdatePasswordScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +18,24 @@ class LoginScreen extends StatelessWidget {
                 child: Stack(children: [
                   Image.asset("assets/images/Ellipse 19.png"),
                   Container(
-                    margin: EdgeInsets.all(20.w),
-                    child: Text(
-                      "Log in ",
-                      style: TextStyle(
-                        color: Color(0x00000000ffFFFFFF),
-                        fontSize: 38.sp,
-                      ),
+                    margin: EdgeInsets.all(10.w),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Update",
+                          style: TextStyle(
+                              color: Color(0x00000000ffFFFFFF),
+                              fontSize: 38.sp,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "Password",
+                          style: TextStyle(
+                              color: Color(0x00000000ffFFFFFF),
+                              fontSize: 30.sp,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
                     ),
                   )
                 ])),
@@ -60,24 +69,26 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ])),
             Positioned(
-                top: 20.h,
+                top: 10.h,
                 right: 0,
                 left: MediaQuery.of(context).size.width / 2.1,
                 child: Image.asset(
-                  "assets/images/remove 1.png",
+                  "assets/images/123.png",
                   fit: BoxFit.fill,
+                  height: MediaQuery.of(context).size.height / 3,
                 )),
             Padding(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height / 2.1),
+                  top: MediaQuery.of(context).size.height / 2.3),
               child: Center(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
                       SizedBox(
-                          height: 60.h,
+                          height: 80.h,
+                          width: MediaQuery.of(context).size.height / 1,
                           child: Image.asset("assets/images/image1.png")),
-                      FormLogin(),
+                      FormUpdatePassword(),
                       // TextButton(
                       //   onPressed: () {
                       //     Navigator.of(context).push(MaterialPageRoute(

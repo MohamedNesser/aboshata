@@ -10,57 +10,65 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Color.fromARGB(255, 231, 216, 216),
       body: Stack(children: [
+        Image.asset(
+          "assets/images/Rectangle 13 .png",
+          fit: BoxFit.fill,
+          height: 10,
+          width: 100,
+        ),
         Column(children: [
           Stack(
             children: [
               Container(
                 height: MediaQuery.of(context).size.height / 5.5,
                 width: MediaQuery.of(context).size.height / 1,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF151528),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(50.0),
-                    bottomRight: Radius.circular(50.0),
+                child: Stack(children: [
+                  Positioned(
+                    child: Image.asset(
+                      "assets/images/Rectangle 1.png",
+                      fit: BoxFit.fill,
+                      height: 140,
+                      width: MediaQuery.of(context).size.height / 1,
+                    ),
                   ),
-                ),
-                child: Column(children: [
-                  Stack(
-                    children: [
-                      Image.asset("assets/images/logo.png"),
-                      Stack(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 70),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  "assets/images/colloer1.png",
-                                  fit: BoxFit.fill,
-                                  height: 70,
-                                  width: 100,
-                                ),
-                                Image.asset(
-                                  "assets/images/find1.png",
-                                  fit: BoxFit.fill,
-                                  height: 70,
-                                  width: 150,
-                                ),
-                              ],
+                  Column(children: [
+                    Stack(
+                      children: [
+                        Image.asset("assets/images/logo.png"),
+                        Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 70),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    "assets/images/colloer1.png",
+                                    fit: BoxFit.fill,
+                                    height: 70,
+                                    width: 100,
+                                  ),
+                                  Image.asset(
+                                    "assets/images/find1.png",
+                                    fit: BoxFit.fill,
+                                    height: 70,
+                                    width: 150,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Center(
-                                child: Image.asset("assets/images/image1.png",
-                                    fit: BoxFit.fill)),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Center(
+                                  child: Image.asset("assets/images/image1.png",
+                                      fit: BoxFit.fill)),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ]),
                 ]),
               )
             ],

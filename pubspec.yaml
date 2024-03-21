@@ -39,6 +39,7 @@ dependencies:
   persistent_bottom_nav_bar: 
   shared_preferences:
   image_picker: 
+  curved_labeled_navigation_bar: ^2.0.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0

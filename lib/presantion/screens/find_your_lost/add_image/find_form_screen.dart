@@ -9,26 +9,26 @@ import 'package:graduationproject/bloc/login_cubit/login_cubit.dart';
 import 'package:graduationproject/presantion/screens/Login_screen/login_page.dart';
 import 'package:graduationproject/presantion/screens/add_person/costum_text_field.dart';
 
-class FormAddPersone extends StatefulWidget {
-  FormAddPersone({Key? key}) : super(key: key);
+class FormfindPersone extends StatefulWidget {
+  FormfindPersone({Key? key}) : super(key: key);
 
   @override
-  State<FormAddPersone> createState() => _FormAddPersoneState();
+  State<FormfindPersone> createState() => _FormAddPersoneState();
 }
 
-class _FormAddPersoneState extends State<FormAddPersone> {
+class _FormAddPersoneState extends State<FormfindPersone> {
   final _globalelkey = GlobalKey<FormState>();
   bool iswrite = false;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FindpersonCubit, FindpersonState>(
+    return BlocConsumer<AddPersonCubit, AddPersonState>(
         listener: (context, state) {
-      if (state is Findpersonsucsess) {
+      if (state is AddPersonsucsess) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("susccesssss")));
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => LoginScreen()));
-      } else if (state is Findpersonfaliouer) {
+        // Navigator.of(context)
+        //     .push(MaterialPageRoute(builder: (context) => LoginScreen()));
+      } else if (state is AddPersonfaliouer) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("errrorrrrrrrrr")));
       }
@@ -39,8 +39,8 @@ class _FormAddPersoneState extends State<FormAddPersone> {
           child: Column(
             children: [
               Container(
-                width: MediaQuery.of(context).size.width / 1.5,
-                height: MediaQuery.of(context).size.width / 9,
+                width: 300.w,
+                height: 55.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(40)),
                   color: Colors.white,
@@ -49,7 +49,7 @@ class _FormAddPersoneState extends State<FormAddPersone> {
                   validator: (value) {
                     // You can define validation rules for the input field.
                     if (value!.isEmpty) {
-                      return 'Please Enter name lost person';
+                      return 'Please Enter name lost person ';
                     }
                     return null; // Return null if the input is valid.
                   },
@@ -57,18 +57,18 @@ class _FormAddPersoneState extends State<FormAddPersone> {
                       fontWeight: FontWeight.bold,
                       fontSize: 22,
                       color: Colors.black),
-                  controller: context.read<FindpersonCubit>().nameController,
+                  controller: context.read<AddPersonCubit>().nameController,
                   decoration: const InputDecoration(
                     prefixIcon:
                         Icon(Icons.person, color: Colors.blue, size: 40),
-                    labelText: 'Enter name lost person',
+                    labelText: 'Enter name lost person ',
                     hintStyle: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                      fontSize: 20,
                     ),
                     hoverColor: Colors.black,
                     labelStyle: TextStyle(
-                      fontSize: 14,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
@@ -86,11 +86,11 @@ class _FormAddPersoneState extends State<FormAddPersone> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
               Container(
-                width: MediaQuery.of(context).size.width / 1.5,
-                height: MediaQuery.of(context).size.width / 9,
+                width: 300.w,
+                height: 55.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(40)),
                   color: Colors.white,
@@ -99,22 +99,68 @@ class _FormAddPersoneState extends State<FormAddPersone> {
                   validator: (value) {
                     // You can define validation rules for the input field.
                     if (value!.isEmpty) {
-                      return 'Please Enter Address lost person';
+                      return 'Please Enter age for lost person ';
                     }
                     return null; // Return null if the input is valid.
                   },
-                  controller: context.read<FindpersonCubit>().addressController,
+                  controller: context.read<AddPersonCubit>().ageController,
+                  decoration: const InputDecoration(
+                    prefixIcon:
+                        Icon(Icons.manage_search, color: Colors.blue, size: 40),
+                    labelText: 'Enter age for lost person ',
+                    hintStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                    hoverColor: Colors.red,
+                    labelStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      borderSide: const BorderSide(
+                        color: Colors.white,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                width: 300.w,
+                height: 55.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(40)),
+                  color: Colors.white,
+                ),
+                child: TextFormField(
+                  validator: (value) {
+                    // You can define validation rules for the input field.
+                    if (value!.isEmpty) {
+                      return 'Please Enter Address  lost person ';
+                    }
+                    return null; // Return null if the input is valid.
+                  },
+                  controller: context.read<AddPersonCubit>().addressController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.location_on_outlined,
                         color: Colors.blue, size: 40),
-                    labelText: 'Enter Address lost person',
+                    labelText: 'Enter Address  lost person ',
                     hintStyle: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 20,
                     ),
                     hoverColor: Colors.red,
                     labelStyle: TextStyle(
-                      fontSize: 14,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
@@ -132,11 +178,11 @@ class _FormAddPersoneState extends State<FormAddPersone> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
               Container(
-                width: MediaQuery.of(context).size.width / 1.5,
-                height: MediaQuery.of(context).size.width / 9,
+                width: 300.w,
+                height: 55.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(40)),
                   color: Colors.white,
@@ -145,21 +191,21 @@ class _FormAddPersoneState extends State<FormAddPersone> {
                   validator: (value) {
                     // You can define validation rules for the input field.
                     if (value!.isEmpty) {
-                      return 'Please Enter contact email';
+                      return 'Please Enter contact mail';
                     }
                     return null; // Return null if the input is valid.
                   },
-                  controller: context.read<FindpersonCubit>().emailController,
+                  controller: context.read<AddPersonCubit>().emailController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.email, color: Colors.blue, size: 40),
-                    labelText: 'Enter contact email',
+                    labelText: 'Enter contact mail',
                     hintStyle: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 20,
                     ),
                     hoverColor: Colors.red,
                     labelStyle: TextStyle(
-                      fontSize: 14,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
@@ -177,11 +223,11 @@ class _FormAddPersoneState extends State<FormAddPersone> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
               Container(
-                width: MediaQuery.of(context).size.width / 1.5,
-                height: MediaQuery.of(context).size.width / 9,
+                width: 300.w,
+                height: 55.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(40)),
                   color: Colors.white,
@@ -195,17 +241,17 @@ class _FormAddPersoneState extends State<FormAddPersone> {
                     return null; // Return null if the input is valid.
                   },
                   controller:
-                      context.read<FindpersonCubit>().phonenumberController,
+                      context.read<AddPersonCubit>().phonenumberController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.phone, color: Colors.blue, size: 40),
                     labelText: 'Enter contact phone',
                     hintStyle: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 20,
                     ),
                     hoverColor: Colors.red,
                     labelStyle: TextStyle(
-                      fontSize: 14,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
@@ -223,17 +269,19 @@ class _FormAddPersoneState extends State<FormAddPersone> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
               SizedBox(
                 width: 200.w,
-                child: state is Findpersonloaded
+                child: state is AddPersonloaded
                     ? CircularProgressIndicator()
                     : MaterialButton(
                         onPressed: () {
-                          if (_globalelkey.currentState!.validate()) {
-                            context.read<FindpersonCubit>().Findperson();
-                          }
+                          context.read<AddPersonCubit>().uploadData(context
+                              .read<AddPersonCubit>()
+                              .imagespaths
+                              .map((e) => e.path)
+                              .toList());
                         },
                         elevation: 10,
                         shape: RoundedRectangleBorder(

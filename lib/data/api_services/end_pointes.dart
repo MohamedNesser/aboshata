@@ -3,6 +3,7 @@ class EndPoint {
   static String loginurl = "user/login";
   static String signupurl = 'user/signup';
   static String missingaddurl = 'missing/add';
+  static String findpersonurl = 'lost';
 }
 
 class ApiKeys {
@@ -16,9 +17,9 @@ class ApiKeys {
   static String username = 'username';
   static String phoneNumber = 'phoneNumber';
   static String name = 'name';
-  static String adress = 'adress';
+  static String address = 'address';
   static String age = 'age';
-  static String uploudimg1 = 'img';
+  static String uploudimg = 'img';
   static String uploudimg2 = 'img';
   static String uploudimg3 = 'img';
 }
