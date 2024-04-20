@@ -45,10 +45,6 @@ class Error {
     };
   }
 }
-
-
-
-
 // class ErrorModel {
 //   final int statusCode;
 //   final String status;

@@ -1,50 +1,39 @@
-class ErrorSignup {
-  List<Errors>? errors;
+// class ErrorSignup {
+//   List<ErrorDetail> errors;
 
-  ErrorSignup({this.errors});
+//   ErrorSignup({required this.errors});
 
-  ErrorSignup.fromJson(Map<String, dynamic> json) {
-    if (json['errors'] != null) {
-      errors = <Errors>[];
-      json['errors'].forEach((v) {
-        errors!.add(new Errors.fromJson(v));
-      });
-    }
-  }
+//   factory ErrorSignup.fromJson(Map<String, dynamic> json) {
+//     return ErrorSignup(
+//       errors: (json['errors'] as List)
+//           .map((e) => ErrorDetail.fromJson(e as Map<String, dynamic>))
+//           .toList(),
+//     );
+//   }
+// }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.errors != null) {
-      data['errors'] = this.errors!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
+// class ErrorDetail {
+//   String type;
+//   String value;
+//   String msg;
+//   String path;
+//   String location;
 
-class Errors {
-  String? type;
-  String? value;
-  String? msg;
-  String? path;
-  String? location;
+//   ErrorDetail({
+//     required this.type,
+//     required this.value,
+//     required this.msg,
+//     required this.path,
+//     required this.location,
+//   });
 
-  Errors({this.type, this.value, this.msg, this.path, this.location});
-
-  Errors.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    value = json['value'];
-    msg = json['msg'];
-    path = json['path'];
-    location = json['location'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['type'] = this.type;
-    data['value'] = this.value;
-    data['msg'] = this.msg;
-    data['path'] = this.path;
-    data['location'] = this.location;
-    return data;
-  }
-}
+//   factory ErrorDetail.fromJson(Map<String, dynamic> json) {
+//     return ErrorDetail(
+//       type: json['type'] as String,
+//       value: json['value'] as String,
+//       msg: json['msg'] as String,
+//       path: json['path'] as String,
+//       location: json['location'] as String,
+//     );
+//   }
+// }

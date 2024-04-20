@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduationproject/presantion/screens/add_person/add_persone.dart';
 import 'package:graduationproject/presantion/screens/find_your_lost/find_home_screen.dart';
+import 'package:graduationproject/presantion/screens/search_screen/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -174,7 +175,10 @@ class HomeScreen extends StatelessWidget {
                 width: 200.w,
                 height: 80.h,
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SearchScreenpage()));
+                  },
                   elevation: 10,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),

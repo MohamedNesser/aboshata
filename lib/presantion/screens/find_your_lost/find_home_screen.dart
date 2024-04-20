@@ -8,7 +8,6 @@ import 'package:graduationproject/bloc/add_person_cubit/state.dart';
 import 'package:graduationproject/presantion/screens/add_person/form_add_person.dart';
 import 'package:graduationproject/presantion/screens/find_your_lost/add_image/add_image.dart';
 import 'package:graduationproject/presantion/screens/find_your_lost/add_image/find_form_screen.dart';
-import 'package:graduationproject/presantion/screens/find_your_lost/form_find_person.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FindHomeScren extends StatelessWidget {
@@ -70,52 +69,61 @@ class FindHomeScren extends StatelessWidget {
                         topLeft: Radius.circular(180.0),
                       ),
                     ),
-                    child: Stack(
+                    child: Column(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Center(
-                            child: Column(
-                              children: [
-                                Positioned(
-                                    top: 10.h,
-                                    left: MediaQuery.of(context).size.width / 4,
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(30)),
-                                        child: Column(
-                                          children: [
-                                            Addimage(),
-                                            Text(
-                                              "Add Images ",
-                                              style: TextStyle(
-                                                fontSize: 20.sp,
-                                                color: Colors.black,
-                                              ),
+                        Stack(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 10),
+                              child: Column(
+                                children: [
+                                  Container(
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              5,
+                                      width:
+                                          MediaQuery.of(context).size.width / 3,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                      child: Column(
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              context
+                                                  .read<AddPersonCubit>()
+                                                  .piclistimage();
+                                            },
+                                            child: Image.asset(
+                                              "assets/images/image-gallery 1.png",
                                             ),
-                                          ],
-                                        ))),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Center(
-                                    child: Padding(
-                                  padding: EdgeInsets.only(),
-                                  child: SingleChildScrollView(
-                                      physics: PageScrollPhysics(),
-                                      child: FormfindPersone()),
-                                ))
-                              ],
-                            ),
-                          ),
-                        )
+                                          ),
+                                          Text(
+                                            "Add Images ",
+                                            style: TextStyle(
+                                              fontSize: 20.sp,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ],
                     ),
                   ),
                 ),
               ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.width / 1.5,
+              ),
+              child: Center(child: FormfindPersone()),
             )
           ]));
         },

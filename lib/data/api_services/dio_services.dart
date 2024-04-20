@@ -14,8 +14,7 @@ class DioServices extends ApiServices {
   DioServices(this.dio) {
     dio.options.baseUrl = EndPoint.baseurl;
     dio.interceptors.add(ApiInterseptor());
-    // dio.options.headers['Authorization'] =
-    //     CacheHelper().getData(key: ApiKeys.token);
+
     dio.interceptors.add(LogInterceptor(
         error: true,
         request: true,
@@ -61,6 +60,7 @@ class DioServices extends ApiServices {
       var response = await dio.get(path,
           data: isFormData ? FormData.fromMap(data) : data,
           queryParameters: queryparametrs);
+      return response.data;
     } on DioException catch (e) {
       handleDioExceptions(e);
     }

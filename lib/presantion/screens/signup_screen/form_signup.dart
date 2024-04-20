@@ -16,7 +16,7 @@ class FormSiginup extends StatefulWidget {
 
 class _FormSiginupState extends State<FormSiginup> {
   final _globalekey = GlobalKey<FormState>();
-
+  bool isvaled = true;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignupCubit, SignupState>(listener: (context, state) {
@@ -44,23 +44,25 @@ class _FormSiginupState extends State<FormSiginup> {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.8,
-                  height: MediaQuery.of(context).size.width / 9,
                   child: TextFormField(
                     controller: context.read<SignupCubit>().emailController,
                     validator: (value) {
                       // You can define validation rules for the input field.
                       if (value!.isEmpty) {
-                        return 'Please enter your phone';
-                      }
-                      return null; // Return null if the input is valid.
+                        return 'Enter a valid email';
+                      } else if (!value.contains('@') ||
+                          !value.contains('gmail.com')) {
+                        return 'Email must conatains @ and gmail.com';
+                      } // Return null if the input is valid.
                     },
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
                       color: Colors.white,
                     ),
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email',
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(10, 2, 10, 0),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       labelStyle: TextStyle(color: Colors.white),
                       hintText: 'Type here',
                       hintStyle: TextStyle(color: Colors.white),
@@ -75,9 +77,8 @@ class _FormSiginupState extends State<FormSiginup> {
                   style: TextStyle(
                       fontSize: 14.sp, color: Color(0x00000000ffE9E9E9)),
                 ),
-                SizedBox(
+                Container(
                   width: MediaQuery.of(context).size.width / 1.8,
-                  height: MediaQuery.of(context).size.width / 9,
                   child: TextFormField(
                     controller: context.read<SignupCubit>().nameController,
                     validator: (value) {
@@ -91,8 +92,11 @@ class _FormSiginupState extends State<FormSiginup> {
                     style: TextStyle(
                       color: Colors.white,
                     ),
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(
+                          10, 2, 10, 0), // control your hints text size
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       labelText: 'Name',
                       labelStyle: TextStyle(color: Colors.white),
                       hintText: 'Type here',
@@ -110,7 +114,6 @@ class _FormSiginupState extends State<FormSiginup> {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.8,
-                  height: MediaQuery.of(context).size.width / 9,
                   child: TextFormField(
                     controller: context.read<SignupCubit>().passwordController,
                     validator: (value) {
@@ -123,7 +126,9 @@ class _FormSiginupState extends State<FormSiginup> {
                     keyboardType: TextInputType.visiblePassword,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.fromLTRB(10, 2, 10, 0),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       hintText: 'password',
                       labelStyle: TextStyle(color: Colors.white),
                       labelText: 'password',
@@ -141,7 +146,6 @@ class _FormSiginupState extends State<FormSiginup> {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.8,
-                  height: MediaQuery.of(context).size.width / 9,
                   child: TextFormField(
                     controller:
                         context.read<SignupCubit>().confarmepasController,
@@ -155,7 +159,9 @@ class _FormSiginupState extends State<FormSiginup> {
                     keyboardType: TextInputType.visiblePassword,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.fromLTRB(10, 2, 10, 0),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       hintText: ' Congirm password',
                       labelStyle: TextStyle(color: Colors.white),
                       labelText: 'Confirm password',
@@ -168,24 +174,24 @@ class _FormSiginupState extends State<FormSiginup> {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 2.5,
-                  child: state is signuploaded
-                      ? CircularProgressIndicator()
-                      : MaterialButton(
-                          onPressed: () {
-                            if (_globalekey.currentState!.validate()) {
-                              // BlocProvider.of<LoginCubit>(context).Loginpost(
-                              //     email: emailController.text,
-                              //     pasworrd: passwordController.text);
-                              context.read<SignupCubit>().Signup();
-                            }
-                          },
-                          elevation: 10,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          color: Colors.blue,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: Row(
+                  child: MaterialButton(
+                    onPressed: () {
+                      if (_globalekey.currentState!.validate()) {
+                        // BlocProvider.of<LoginCubit>(context).Loginpost(
+                        //     email: emailController.text,
+                        //     pasworrd: passwordController.text);
+                        context.read<SignupCubit>().Signup();
+                      }
+                    },
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    color: Colors.blue,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: state is signuploaded
+                          ? Text("Loading...")
+                          : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
@@ -197,8 +203,8 @@ class _FormSiginupState extends State<FormSiginup> {
                                 )
                               ],
                             ),
-                          ),
-                        ),
+                    ),
+                  ),
                 )
               ],
             ))

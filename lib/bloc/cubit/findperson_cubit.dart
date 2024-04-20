@@ -44,7 +44,7 @@ class FindpersonCubit extends Cubit<FindpersonState> {
       emit(Findpersonsucsess(message: findpessonmodel!));
       return response.data;
     } on ServerException catch (e) {
-      emit(Findpersonfaliouer(errormassage: e.findpersonerror.errors![0].msg!));
+      // emit(Findpersonfaliouer(errormassage: e.findpersonerror.errors![0].msg!));
     }
   }
 

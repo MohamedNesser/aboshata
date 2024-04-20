@@ -26,8 +26,7 @@ class _FormAddPersoneState extends State<FormfindPersone> {
       if (state is AddPersonsucsess) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("susccesssss")));
-        // Navigator.of(context)
-        //     .push(MaterialPageRoute(builder: (context) => LoginScreen()));
+        Navigator.of(context).pop();
       } else if (state is AddPersonfaliouer) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("errrorrrrrrrrr")));
@@ -277,11 +276,12 @@ class _FormAddPersoneState extends State<FormfindPersone> {
                     ? CircularProgressIndicator()
                     : MaterialButton(
                         onPressed: () {
-                          context.read<AddPersonCubit>().uploadData(context
-                              .read<AddPersonCubit>()
-                              .imagespaths
-                              .map((e) => e.path)
-                              .toList());
+                          context.read<AddPersonCubit>().uploadData(
+                              imagepaths: context
+                                  .read<AddPersonCubit>()
+                                  .pickedimages
+                                  .map((e) => e.path)
+                                  .toList());
                         },
                         elevation: 10,
                         shape: RoundedRectangleBorder(

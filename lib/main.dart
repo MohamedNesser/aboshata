@@ -5,14 +5,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduationproject/bloc/add_person_cubit/cubit.dart';
 import 'package:graduationproject/bloc/cubit/findperson_cubit.dart';
 import 'package:graduationproject/bloc/login_cubit/login_cubit.dart';
+import 'package:graduationproject/bloc/mylost/cubit/mylost_cubit.dart';
+import 'package:graduationproject/bloc/search_cubit/cubit/search.dart';
 import 'package:graduationproject/bloc/signup/cubit/signup_cubit.dart';
 import 'package:graduationproject/data/api_services/dio_services.dart';
 import 'package:graduationproject/data/sherdp_referense/cash_helper.dart';
 import 'package:graduationproject/presantion/screens/Login_screen/login_page.dart';
 import 'package:graduationproject/presantion/screens/add_person/add_persone.dart';
+import 'package:graduationproject/presantion/screens/find_your_lost/add_image/add_image.dart';
 import 'package:graduationproject/presantion/screens/find_your_lost/find_home_screen.dart';
 import 'package:graduationproject/presantion/screens/forgot_password/forgot_password.dart';
 import 'package:graduationproject/presantion/screens/home_screen/home_screen.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/profile_screen.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/update_name/edit_name.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/update_password/change_password.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/your_founded/your_found.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/your_losts/your_lost.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile_page.dart';
+import 'package:graduationproject/presantion/screens/search_screen/search_screen.dart';
 import 'package:graduationproject/presantion/screens/signup_screen/signup_screen.dart';
 import 'package:graduationproject/presantion/screens/splash_screen/splash_widgets/buttom_splash_screen.dart';
 
@@ -22,6 +32,7 @@ import 'package:graduationproject/presantion/screens/user/user_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   CacheHelper().init();
 
   runApp(const MyApp());
@@ -45,6 +56,12 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => AddPersonCubit(DioServices(Dio()))),
           BlocProvider(
             create: (context) => FindpersonCubit(DioServices(Dio())),
+          ),
+          BlocProvider(
+            create: (context) => SearchCubit(DioServices(Dio())),
+          ),
+          BlocProvider(
+            create: (context) => MyLostCubit(DioServices(Dio())),
           ),
         ],
         child: MaterialApp(

@@ -20,9 +20,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               top: 0,
               left: 0,
               child: Stack(children: [
-                Image.asset("assets/images/Ellipse 19.png"),
+                Image.asset(
+                  "assets/images/Ellipse 19.png",
+                  height: 150.h,
+                ),
                 Container(
-                  margin: EdgeInsets.all(30.w),
+                  margin: EdgeInsets.all(20.w),
                   child: Text(
                     "Sign up ",
                     style: TextStyle(
@@ -37,12 +40,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               right: 10,
               child: Image.asset(
                 "assets/images/remove2.png",
-                height: 250,
+                height: 200.h,
                 fit: BoxFit.fill,
               )),
           Stack(children: [
             Positioned(
-                top: MediaQuery.of(context).size.height / 3.2,
+                top: MediaQuery.of(context).size.height / 3.5,
                 right: 0,
                 left: 0,
                 child: Stack(children: [
@@ -56,13 +59,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ])),
             Padding(
-              padding:
-                  EdgeInsets.only(top: MediaQuery.of(context).size.height / 3),
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height / 3.5),
               child: Center(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Image.asset("assets/images/image1.png"),
+                      Image.asset(
+                        "assets/images/image1.png",
+                        height: 70.h,
+                      ),
                       FormSiginup(),
                       TextButton(
                         onPressed: () {
