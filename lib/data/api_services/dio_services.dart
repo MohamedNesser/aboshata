@@ -39,13 +39,13 @@ class DioServices extends ApiServices {
   }
 
   @override
-  Future fatch(String path,
+  Future patch(String path,
       {data,
       Map<String, dynamic>? quereyprameters,
       bool isFormData = false}) async {
     try {
-      var response = await dio.fetch(RequestOptions(
-          baseUrl: path, data: data, queryParameters: quereyprameters));
+      var response =
+          await dio.patch(path, data: data, queryParameters: quereyprameters);
     } on DioException catch (e) {
       handleDioExceptions(e);
     }

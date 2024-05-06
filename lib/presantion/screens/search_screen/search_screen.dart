@@ -1,13 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduationproject/bloc/search_cubit/cubit/search.dart';
 import 'package:graduationproject/bloc/search_cubit/state/search_state.dart';
-import 'package:graduationproject/presantion/screens/profile_screen/profile_page.dart';
-import 'package:graduationproject/presantion/screens/profile_screen/profile_widgets/item_chiled.dart';
-import 'package:graduationproject/presantion/screens/signup_screen/signup_screen.dart';
-import 'package:graduationproject/presantion/screens/user/user_screen.dart';
 
 class SearchScreenpage extends StatelessWidget {
   const SearchScreenpage({Key? key}) : super(key: key);
@@ -17,8 +12,6 @@ class SearchScreenpage extends StatelessWidget {
     return BlocConsumer<SearchCubit, SearchState>(
       listener: (context, state) {
         if (state is Searchseacsess) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(" التسجيل بنجاح")));
         } else if (state is Searchfaliouer) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(" this name not found ")));

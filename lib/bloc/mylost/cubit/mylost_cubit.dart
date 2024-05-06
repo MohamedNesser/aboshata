@@ -20,7 +20,7 @@ class MyLostCubit extends Cubit<MyLostState> {
       emit(MyLostloaded());
 
       final response = await api.get(
-        'https://lostcal.onrender.com/mylost',
+        'https://lostcal.onrender.com/api/mylost',
       );
 
       emit(MyLostseacsess(mylost: Mylost.fromJson(response)));

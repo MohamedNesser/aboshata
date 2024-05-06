@@ -1,10 +1,12 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduationproject/bloc/update_name_cubit/cubit.dart';
+import 'package:graduationproject/bloc/update_name_cubit/state.dart';
 import 'package:graduationproject/presantion/screens/home_screen/home_screen.dart';
 import 'package:graduationproject/presantion/screens/info_screen/info_screen.dart';
 import 'package:graduationproject/presantion/screens/profile_screen/profile/profile_screen.dart';
-import 'package:graduationproject/presantion/screens/profile_screen/profile_page.dart';
 
 void main() => runApp(MaterialApp(home: BottomNavBarscreen()));
 
@@ -19,7 +21,18 @@ class _BottomNavBarscreenState extends State<BottomNavBarscreen> {
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   List<Widget> _buildScreens = [
     HomeScreen(),
-    Profilepage(),
+    BlocConsumer<UpDateNameCubit, UpDateNameState>(
+      listener: (context, state) {
+        if (state is Profileseacsess) {
+        } else if (state is Profilefaliouer) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(" pleas Login agin ")));
+        }
+      },
+      builder: (context, state) {
+        return Profilepage();
+      },
+    ),
     InfoScreen(),
   ];
   @override
@@ -43,9 +56,14 @@ class _BottomNavBarscreenState extends State<BottomNavBarscreen> {
           CurvedNavigationBarItem(
             child: Column(
               children: [
-                Icon(
-                  Icons.person_outline,
-                  color: Colors.blue,
+                GestureDetector(
+                  onTap: () {
+                    context.read<UpDateNameCubit>().GitProfile();
+                  },
+                  child: Icon(
+                    Icons.person_outline,
+                    color: Colors.blue,
+                  ),
                 ),
               ],
             ),

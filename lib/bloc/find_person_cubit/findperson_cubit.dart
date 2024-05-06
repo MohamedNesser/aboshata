@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:graduationproject/bloc/cubit/findperson_state.dart';
+import 'package:graduationproject/bloc/find_person_cubit/findperson_state.dart';
 import 'package:graduationproject/core/funaction.dart';
 import 'package:graduationproject/data/api_services/api_servicese.dart';
 import 'package:graduationproject/data/api_services/end_pointes.dart';
@@ -32,14 +32,15 @@ class FindpersonCubit extends Cubit<FindpersonState> {
     var formData = FormData.fromMap({});
     try {
       emit(Findpersonloaded());
-      final response =
-          await api.post(EndPoint.findpersonurl, isFormData: true, data: {
-        "email": emailController.text,
-        "name": nameController.text,
-        "phoneNumber": phonenumberController.text,
-        "address": addressController.text,
-        ApiKeys.uploudimg: await uploadImageToAPI(profilepic!),
-      });
+      final response = await api.post("https://lostcal.onrender.com/Api/lost",
+          isFormData: true,
+          data: {
+            "email": emailController.text,
+            "name": nameController.text,
+            "phoneNumber": phonenumberController.text,
+            "address": addressController.text,
+            ApiKeys.uploudimg: await uploadImageToAPI(profilepic!),
+          });
       final findpessonmodel = findPersonmodel!.message;
       emit(Findpersonsucsess(message: findpessonmodel!));
       return response.data;

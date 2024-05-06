@@ -7,6 +7,7 @@ import 'package:graduationproject/data/api_services/end_pointes.dart';
 import 'package:graduationproject/data/errors/server_excaption.dart';
 import 'package:graduationproject/data/model/signup_error/list_error.dart';
 import 'package:graduationproject/data/model/signup_model.dart';
+import 'package:graduationproject/data/model/signup_model/signup_suacess.dart';
 import 'package:graduationproject/data/sherdp_referense/cash_helper.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
@@ -23,10 +24,11 @@ class SignupCubit extends Cubit<SignupState> {
   Future Signup() async {
     try {
       emit(signuploaded());
-      var response = await api.post(EndPoint.signupurl, data: {
+      final response = await api.post(EndPoint.signupurl, data: {
         ApiKeys.username: nameController.text,
         ApiKeys.email: emailController.text,
-        ApiKeys.password: passwordController.text
+        ApiKeys.password: passwordController.text,
+        ApiKeys.passwordConfirm: confarmepasController.text
       });
 
       usersignup = signupmodel.fromJson(response);
@@ -34,25 +36,10 @@ class SignupCubit extends Cubit<SignupState> {
       CacheHelper().saveData(key: ApiKeys.token, value: usersignup!.token);
       CacheHelper().saveData(key: ApiKeys.id, value: mytoken[ApiKeys.id]);
 
-      emit(signupsucsess());
+      emit(SignupSucsess(listsignup: SignupSuacsess.fromJson(response)));
       return response;
     } on ServerException catch (e) {
-      if (e.errorsignp.errors != null) {
-        for (var error in e.errorsignp.errors!) {
-          final errorMessage = error.msg ??
-              "Unknown error"; // Provide a default error message if error.msg is null
-          if (error.type == "field" &&
-              errorMessage.contains("User is already exist")) {
-            emit(signupfaliouer(
-                errormassage:
-                    "User already exists. Please try a different email."));
-          } else {
-            emit(signupfaliouer(errormassage: errorMessage));
-          }
-        }
-      } else {
-        emit(signupfaliouer(errormassage: "Unknown error"));
-      }
+      emit(Signupfaliouer(errormassage: e.errorsignp.errors[0]));
     }
   }
 }

@@ -20,12 +20,12 @@ class _FormSiginupState extends State<FormSiginup> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignupCubit, SignupState>(listener: (context, state) {
-      if (state is signupsucsess) {
+      if (state is SignupSucsess) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(" التسجيل بنجاح")));
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => BottomNavBarscreen()));
-      } else if (state is signupfaliouer) {
+      } else if (state is Signupfaliouer) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(state.errormassage)));
       }

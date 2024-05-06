@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduationproject/bloc/forget_password/cubit/forget_password_cubit.dart';
 import 'package:graduationproject/bloc/login_cubit/login_cubit.dart';
 import 'package:graduationproject/presantion/screens/user/user_screen.dart';
 
@@ -17,14 +18,12 @@ bool _obscureText = true;
 class _FormForgotPasswordState extends State<FormForgotPassword> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
+    return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
       listener: (context, state) {
-        if (state is Loginsucsess) {
+        if (state is ForgetPasswordseacsess) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(" التسجيل بنجاح")));
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => BottomNavBarscreen()));
-        } else if (state is Loginfaliouer) {
+              .showSnackBar(SnackBar(content: Text(state.massage)));
+        } else if (state is ForgetPasswordfaliouer) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.errormassage)));
         }
@@ -59,6 +58,8 @@ class _FormForgotPasswordState extends State<FormForgotPassword> {
                       width: MediaQuery.of(context).size.width / 1.8,
                       height: MediaQuery.of(context).size.width / 7,
                       child: TextFormField(
+                        controller:
+                            context.read<ForgetPasswordCubit>().emailcontroller,
                         validator: (value) {
                           // You can define validation rules for the input field.
                           if (value!.isEmpty) {
@@ -95,7 +96,9 @@ class _FormForgotPasswordState extends State<FormForgotPassword> {
                       child: MaterialButton(
                         onPressed: () {
                           if (_globalekey.currentState!.validate()) {
-                            context.read<LoginCubit>().login();
+                            context
+                                .read<ForgetPasswordCubit>()
+                                .ForgetPassword();
                           }
                         },
                         elevation: 10,
@@ -107,13 +110,15 @@ class _FormForgotPasswordState extends State<FormForgotPassword> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                "Submit",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold),
-                              )
+                              state is ForgetPasswordloaded
+                                  ? Text("Loading.....")
+                                  : Text(
+                                      "Submit",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.bold),
+                                    )
                             ],
                           ),
                         ),

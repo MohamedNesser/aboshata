@@ -7,6 +7,7 @@ import 'package:graduationproject/data/errors/server_excaption.dart';
 
 import 'package:graduationproject/data/api_services/api_servicese.dart';
 import 'package:graduationproject/data/model/login_model.dart';
+import 'package:graduationproject/data/model/profile/profile_model.dart';
 import 'package:graduationproject/data/sherdp_referense/cash_helper.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
@@ -39,6 +40,21 @@ class LoginCubit extends Cubit<LoginState> {
       return response;
     } on ServerException catch (e) {
       emit(Loginfaliouer(errormassage: e.errorModel.message));
+    }
+  }
+
+  Future GitProfile() async {
+    try {
+      emit(Profileloaded());
+
+      final response = await api.get(
+        "https://lostcal.onrender.com/api/user/profile",
+      );
+      emit(Profileseacsess(profilemodel: Profile.fromJson(response)));
+      return response;
+    } on ServerException catch (e) {
+      emit(Profilefaliouer(
+          errormassage: "You are not login, Please login to get access"));
     }
   }
 }

@@ -1,9 +1,12 @@
 class EndPoint {
-  static String baseurl = "https://lostcal.onrender.com/";
+  static String baseurl = "https://lostcal.onrender.com/api/";
   static String loginurl = "user/login";
   static String signupurl = 'user/signup';
   static String missingaddurl = 'missing/add';
   static String findpersonurl = 'lost';
+  static String changename = 'user/changename';
+  static String changepassword = 'user/updateMyPassword';
+  static String forgetPassword = 'user/forgetPassword';
 }
 
 class ApiKeys {
@@ -11,10 +14,12 @@ class ApiKeys {
   static String errorMessage = 'message';
   static String email = "email";
   static String password = "password";
+  static String passwordConfirm = "passwordConfirm";
+
   static String id = 'id';
   static String token = 'token';
   static String message = 'message';
-  static String username = 'username';
+  static String username = "username";
   static String phoneNumber = 'phoneNumber';
   static String name = 'name';
   static String address = 'address';

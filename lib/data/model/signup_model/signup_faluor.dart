@@ -1,7 +1,7 @@
 class ErrorSignup {
-  List<Errors>? errors;
+  late List<dynamic> errors;
 
-  ErrorSignup({this.errors});
+  ErrorSignup({required this.errors});
 
   ErrorSignup.fromJson(Map<String, dynamic> json) {
     if (json['errors'] != null) {
@@ -11,22 +11,28 @@ class ErrorSignup {
       });
     }
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.errors != null) {
+      data['errors'] = this.errors!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
 class Errors {
-  String? type;
-  String? value;
   String? msg;
-  String? path;
-  String? location;
 
-  Errors({this.type, this.value, this.msg, this.path, this.location});
+  Errors({this.msg});
 
   Errors.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    value = json['value'];
     msg = json['msg'];
-    path = json['path'];
-    location = json['location'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['msg'] = this.msg;
+    return data;
   }
 }

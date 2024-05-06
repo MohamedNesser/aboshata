@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduationproject/bloc/login_cubit/login_cubit.dart';
 import 'package:graduationproject/presantion/buttom_navigation/buttom_navigation.dart';
+import 'package:graduationproject/presantion/screens/forgot_password/forgot_password.dart';
 import 'package:graduationproject/presantion/screens/info_screen/info_screen.dart';
 import 'package:graduationproject/presantion/screens/signup_screen/signup_screen.dart';
 import 'package:graduationproject/presantion/screens/user/user_screen.dart';
@@ -121,7 +122,10 @@ class _FormLoginState extends State<FormLogin> {
                       SizedBox(
                         height: 40.h,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ForgotPasswordScreen()));
+                          },
                           child: Text(
                             "Forget password ?",
                             style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduationproject/data/model/signup_model/signup_suacess.dart';
 
 @immutable
 sealed class SignupState {}
@@ -7,11 +8,15 @@ final class SignupInitial extends SignupState {}
 
 class signuploaded extends SignupState {}
 
-class signupsucsess extends SignupState {}
+class SignupSucsess extends SignupState {
+  final SignupSuacsess listsignup;
 
-class signupfaliouer extends SignupState {
+  SignupSucsess({required this.listsignup});
+}
+
+class Signupfaliouer extends SignupState {
   String errormassage;
-  signupfaliouer({
+  Signupfaliouer({
     required this.errormassage,
   });
 }

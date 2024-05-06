@@ -1,30 +1,23 @@
 class ErrorModel {
   final String status;
-  final Error error;
   final String message;
-  final String stack;
 
-  ErrorModel(
-      {required this.status,
-      required this.error,
-      required this.message,
-      required this.stack});
+  ErrorModel({
+    required this.status,
+    required this.message,
+  });
 
   factory ErrorModel.fromJson(Map<String, dynamic> json) {
     return ErrorModel(
       status: json['status'],
-      error: Error.fromJson((json['error'])),
       message: json['message'],
-      stack: json['stack'],
     );
   }
 
   Map<String, dynamic> tojson() {
     return {
       'status': status,
-      'error': error,
       'message': message,
-      'stack': stack
     };
   }
 }

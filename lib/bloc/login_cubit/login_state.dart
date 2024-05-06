@@ -15,3 +15,18 @@ class Loginfaliouer extends LoginState {
     required this.errormassage,
   });
 }
+
+class Profileloaded extends LoginState {}
+
+class Profileseacsess extends LoginState {
+  final Profile profilemodel;
+
+  Profileseacsess({required this.profilemodel});
+}
+
+class Profilefaliouer extends LoginState {
+  String errormassage;
+  Profilefaliouer({
+    required this.errormassage,
+  });
+}

@@ -19,7 +19,7 @@ class SearchCubit extends Cubit<SearchState> {
       emit(Searchloaded());
 
       final response = await api.get(
-        'https://lostcal.onrender.com/mylost/search?',
+        'https://lostcal.onrender.com/api/mylost/search?',
         queryparametrs: {'name': nameController.text},
       );
 
