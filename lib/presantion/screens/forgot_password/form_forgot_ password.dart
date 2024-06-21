@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduationproject/bloc/forget_password/cubit/forget_password_cubit.dart';
 import 'package:graduationproject/bloc/login_cubit/login_cubit.dart';
+import 'package:graduationproject/presantion/screens/secret_code/secret_code_screen.dart';
 import 'package:graduationproject/presantion/screens/user/user_screen.dart';
 
 class FormForgotPassword extends StatefulWidget {
@@ -23,22 +24,26 @@ class _FormForgotPasswordState extends State<FormForgotPassword> {
         if (state is ForgetPasswordseacsess) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.massage)));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => SecretCodeScreen()));
         } else if (state is ForgetPasswordfaliouer) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.errormassage)));
         }
-
-        // TODO: implement listener
       },
       builder: (context, state) {
         return Column(
           children: [
             Column(children: [
               Center(
-                child: Text(
-                  "Enter your email and we will send you a link to reset your password                ",
-                  style: TextStyle(
-                      fontSize: 18.sp, color: Color(0x00000000ffE9E9E9)),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    "Enter your email and we will send you a link to reset your password                ",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 18.sp, color: Color(0x00000000ffE9E9E9)),
+                  ),
                 ),
               ),
               SizedBox(height: 5.h),
@@ -49,41 +54,34 @@ class _FormForgotPasswordState extends State<FormForgotPassword> {
                       height: 5.h,
                     ),
                     Text(
-                      textAlign: TextAlign.left,
-                      "Email                   ",
+                      "Email                                ",
                       style: TextStyle(
                           fontSize: 20.sp, color: Color(0x00000000ffE9E9E9)),
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.8,
-                      height: MediaQuery.of(context).size.width / 7,
+                      width: MediaQuery.of(context).size.width / 1.5,
                       child: TextFormField(
                         controller:
                             context.read<ForgetPasswordCubit>().emailcontroller,
                         validator: (value) {
                           // You can define validation rules for the input field.
                           if (value!.isEmpty) {
-                            return 'Please enter your Email';
-                          }
-                          return null; // Return null if the input is valid.
+                            return 'Enter a valid email';
+                          } else if (!value.contains('@') ||
+                              !value.contains('gmail.com')) {
+                            return 'Email must conatains @ and gmail.com';
+                          } // Return null if the input is valid.
                         },
-                        keyboardType: TextInputType.visiblePassword,
-                        style: TextStyle(color: Colors.white),
-                        obscureText: _obscureText,
+                        keyboardType: TextInputType.emailAddress,
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _obscureText = !_obscureText;
-                              });
-                            },
-                            child: Icon(_obscureText
-                                ? Icons.visibility_off
-                                : Icons.visibility),
-                          ),
+                          contentPadding: EdgeInsets.fromLTRB(10, 2, 10, 0),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30)),
                           labelStyle: TextStyle(color: Colors.white),
-                          labelText: 'Type here',
+                          hintText: 'Type here',
                           hintStyle: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -92,7 +90,7 @@ class _FormForgotPasswordState extends State<FormForgotPassword> {
                       height: 10.h,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 2,
+                      width: MediaQuery.of(context).size.width / 1.5,
                       child: MaterialButton(
                         onPressed: () {
                           if (_globalekey.currentState!.validate()) {

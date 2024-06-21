@@ -192,7 +192,7 @@ class Profilepage extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => yourMatches()));
+                                    builder: (context) => YourMatches()));
                               },
                               child: Container(
                                 width: MediaQuery.of(context).size.width / 1.5,

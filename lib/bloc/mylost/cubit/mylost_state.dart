@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduationproject/data/model/mylost_model/mylost.dart';
+import 'package:graduationproject/data/model/search_model/result_model.dart';
 
 @immutable
 sealed class MyLostState {}

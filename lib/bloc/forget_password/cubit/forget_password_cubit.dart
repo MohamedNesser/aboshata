@@ -16,7 +16,8 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     try {
       emit(ForgetPasswordloaded());
 
-      final response = await api.post(EndPoint.forgetPassword, data: {
+      final response = await api.post(
+        EndPoint.forgetPassword, data: {
         "email": emailcontroller.text,
       });
       emit(ForgetPasswordseacsess(massage: 'Reset code sent to email'));

@@ -80,4 +80,18 @@ class DioServices extends ApiServices {
       handleDioExceptions(e);
     }
   }
+
+  @override
+  Future put(String path,
+      {Object? data,
+      Map<String, dynamic>? quereyprameters,
+      bool isFormData = false}) async {
+    try {
+      final response =
+          await dio.put(path, data: data, queryParameters: quereyprameters);
+      return response.data;
+    } on DioException catch (e) {
+      handleDioExceptions(e);
+    }
+  }
 }

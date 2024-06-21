@@ -29,7 +29,6 @@ class FindpersonCubit extends Cubit<FindpersonState> {
 
   FindPersonmodel? findPersonmodel;
   Findperson() async {
-    var formData = FormData.fromMap({});
     try {
       emit(Findpersonloaded());
       final response = await api.post("https://lostcal.onrender.com/Api/lost",
@@ -48,26 +47,4 @@ class FindpersonCubit extends Cubit<FindpersonState> {
       // emit(Findpersonfaliouer(errormassage: e.findpersonerror.errors![0].msg!));
     }
   }
-
-//   Future<void> uploadFileDio(String url, File file) async {
-//     url = 'https://lostcal.onrender.com/lost';
-//     var formData = FormData.fromMap({
-//       'img': await MultipartFile.fromFile(file.path),
-//       "email": emailController.text,
-//       "name": nameController.text,
-//       "phoneNumber": phonenumberController.text,
-//       "address": addressController.text,
-//     });
-//     Dio dio = Dio();
-//     try {
-//         emit(Findpersonloaded());
-//   var response = await dio.post(url, data: formData);
-
-//    emit(Findpersonsucsess(message: findpessonmodel!));
-//       return response.data;
-// } on ServerException catch (e) {
-//       emit(Findpersonfaliouer(errormassage: e.findpersonerror.errors![0].msg!));
-//     }
-
-//   }
 }

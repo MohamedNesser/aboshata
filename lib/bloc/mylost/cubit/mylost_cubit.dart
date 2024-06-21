@@ -15,6 +15,8 @@ class MyLostCubit extends Cubit<MyLostState> {
     this.api,
   ) : super(MyLostInitial());
   final ApiServices api;
+  Mylost? listlostes;
+  // ignore: non_constant_identifier_names
   Future GetMyLost() async {
     try {
       emit(MyLostloaded());

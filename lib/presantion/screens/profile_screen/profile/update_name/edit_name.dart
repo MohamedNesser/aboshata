@@ -47,7 +47,7 @@ class EditName extends StatelessWidget {
                             ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                   Expanded(
@@ -59,6 +59,26 @@ class EditName extends StatelessWidget {
                           height: MediaQuery.of(context).size.height,
                           width: MediaQuery.of(context).size.width / 1,
                         ),
+                        Positioned(
+                            bottom: 0,
+                            left: 50,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Row(
+                                children: [
+                                  Image.asset("assets/images/back.png"),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "Back to profile ",
+                                    style: TextStyle(fontSize: 24.sp),
+                                  )
+                                ],
+                              ),
+                            )),
                         Positioned(
                           top: 20,
                           right: 20,
@@ -159,26 +179,6 @@ class EditName extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Positioned(
-                            bottom: 50,
-                            left: 50,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Row(
-                                children: [
-                                  Image.asset("assets/images/back.png"),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "Back to profile ",
-                                    style: TextStyle(fontSize: 24.sp),
-                                  )
-                                ],
-                              ),
-                            ))
                       ],
                     ),
                   ),

@@ -6,14 +6,31 @@ import 'package:graduationproject/bloc/add_person_cubit/cubit.dart';
 import 'package:graduationproject/bloc/find_person_cubit/findperson_cubit.dart';
 import 'package:graduationproject/bloc/forget_password/cubit/forget_password_cubit.dart';
 import 'package:graduationproject/bloc/login_cubit/login_cubit.dart';
+import 'package:graduationproject/bloc/matches/cubit/matches_cubit.dart';
+import 'package:graduationproject/bloc/myfound/cubit/myfound_cubit.dart';
 import 'package:graduationproject/bloc/mylost/cubit/mylost_cubit.dart';
+import 'package:graduationproject/bloc/reset_password/cubit/reset_password_cubit.dart';
 import 'package:graduationproject/bloc/search_cubit/cubit/search.dart';
+import 'package:graduationproject/bloc/secret_code/cubit/secret_code_cubit.dart';
 import 'package:graduationproject/bloc/signup/cubit/signup_cubit.dart';
 import 'package:graduationproject/bloc/update_name_cubit/cubit.dart';
 import 'package:graduationproject/bloc/update_password.dart/update_pass_cubit.dart';
+import 'package:graduationproject/bloc/update_requrds/cubit/update_requrdes_cubit.dart';
 import 'package:graduationproject/data/api_services/dio_services.dart';
 import 'package:graduationproject/data/sherdp_referense/cash_helper.dart';
+import 'package:graduationproject/presantion/screens/Login_screen/login_page.dart';
 import 'package:graduationproject/presantion/screens/forgot_password/forgot_password.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/update_name/edit_name.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/update_password/change_password.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/your_founded/your_found.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/your_losts/your_lost.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/your_matches/your_mathches.dart';
+import 'package:graduationproject/presantion/screens/secret_code/secret_code_screen.dart';
+import 'package:graduationproject/presantion/screens/signup_screen/form_signup.dart';
+import 'package:graduationproject/presantion/screens/signup_screen/signup_screen.dart';
+import 'package:graduationproject/presantion/screens/splash_screen/splash_widgets/splash.dart';
+import 'package:graduationproject/presantion/screens/update_password/update_password_screen.dart';
+import 'package:graduationproject/presantion/screens/update_records/update_losts/update_screen_lost.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,10 +74,25 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => ForgetPasswordCubit(DioServices(Dio())),
           ),
+          BlocProvider(
+            create: (context) => MyfoundCubit(DioServices(Dio())),
+          ),
+          BlocProvider(
+            create: (context) => SecretCodeCubit(DioServices(Dio())),
+          ),
+          BlocProvider(
+            create: (context) => ResetPasswordCubit(DioServices(Dio())),
+          ),
+          BlocProvider(
+            create: (context) => UpdateRequrdesCubit(DioServices(Dio())),
+          ),
+          BlocProvider(
+            create: (context) => MatchesCubit(DioServices(Dio())),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: ForgotPasswordScreen(),
+          home: EditName(),
         ),
       ),
     );

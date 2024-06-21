@@ -1,9 +1,9 @@
-class Mylost {
+class Myfoundes {
   List<Result>? result;
 
-  Mylost({this.result});
+  Myfoundes({this.result});
 
-  Mylost.fromJson(Map<String, dynamic> json) {
+  Myfoundes.fromJson(Map<String, dynamic> json) {
     if (json['result'] != null) {
       result = <Result>[];
       json['result'].forEach((v) {
@@ -24,10 +24,9 @@ class Mylost {
 class Result {
   String? name;
   String? address;
-  List<String>? img;
+  String? img;
   int? phoneNumber;
   String? email;
-  int? age;
   String? id;
 
   Result(
@@ -36,16 +35,14 @@ class Result {
       this.img,
       this.phoneNumber,
       this.email,
-      this.age,
       this.id});
 
   Result.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     address = json['address'];
-    img = json['img'].cast<String>();
+    img = json['img'];
     phoneNumber = json['phoneNumber'];
     email = json['email'];
-    age = json['age'];
     id = json['id'];
   }
 
@@ -56,7 +53,6 @@ class Result {
     data['img'] = this.img;
     data['phoneNumber'] = this.phoneNumber;
     data['email'] = this.email;
-    data['age'] = this.age;
     data['id'] = this.id;
     return data;
   }

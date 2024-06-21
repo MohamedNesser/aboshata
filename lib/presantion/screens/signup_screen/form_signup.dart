@@ -38,7 +38,7 @@ class _FormSiginupState extends State<FormSiginup> {
             child: Column(
               children: [
                 Text(
-                  "Email or Phone Number            ",
+                  "Email                    ",
                   style: TextStyle(
                       fontSize: 14.sp, color: Color(0x00000000ffE9E9E9)),
                 ),
@@ -120,6 +120,8 @@ class _FormSiginupState extends State<FormSiginup> {
                       // You can define validation rules for the input field.
                       if (value!.isEmpty) {
                         return 'Please enter your password';
+                      } else if (!value.contains('@') && !value.contains('#')) {
+                        return 'Please enter any sympoil';
                       }
                       return null; // Return null if the input is valid.
                     },

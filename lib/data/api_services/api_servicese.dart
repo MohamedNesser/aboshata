@@ -13,4 +13,9 @@ abstract class ApiServices {
       {Object? data,
       Map<String, dynamic>? quereyprameters,
       bool isFormData = false});
+
+  Future put(String path,
+      {Object? data,
+      Map<String, dynamic>? quereyprameters,
+      bool isFormData = false});
 }

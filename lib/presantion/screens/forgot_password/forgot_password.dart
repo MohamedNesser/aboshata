@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduationproject/presantion/screens/Login_screen/login_page.dart';
-import 'package:graduationproject/presantion/screens/forgot_password/form_forgot%20password.dart';
+import 'package:graduationproject/presantion/screens/forgot_password/form_forgot_%20password.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -101,10 +101,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                               Icon(Icons.arrow_back_ios_new_outlined,
                                   color: Colors.white),
                               Text(
-                                "   Back to login ",
+                                "       Back to login ",
                                 style: TextStyle(
-                                    fontSize: 15,
-                                    color: Color.fromARGB(255, 128, 125, 125)),
+                                    fontSize: 20, color: Colors.white),
                               ),
                             ],
                           ),

@@ -7,6 +7,8 @@ class EndPoint {
   static String changename = 'user/changename';
   static String changepassword = 'user/updateMyPassword';
   static String forgetPassword = 'user/forgetPassword';
+  static String resetcode = 'user/verifyResetCode';
+  static String resetpassword = 'user/resetPassword';
 }
 
 class ApiKeys {

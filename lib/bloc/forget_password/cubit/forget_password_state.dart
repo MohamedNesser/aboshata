@@ -1,12 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'forget_password_cubit.dart';
 
-sealed class ForgetPasswordState extends Equatable {
-  const ForgetPasswordState();
-
-  @override
-  List<Object> get props => [];
-}
+sealed class ForgetPasswordState {}
 
 final class ForgetPasswordInitial extends ForgetPasswordState {}
 
