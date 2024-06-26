@@ -6,6 +6,7 @@ import 'package:graduationproject/bloc/signup/cubit/signup_cubit.dart';
 import 'package:graduationproject/bloc/signup/cubit/signup_state.dart';
 import 'package:graduationproject/bloc/update_name_cubit/cubit.dart';
 import 'package:graduationproject/bloc/update_name_cubit/state.dart';
+import 'package:graduationproject/presantion/screens/Login_screen/login_page.dart';
 import 'package:graduationproject/presantion/screens/profile_screen/profile/update_name/edit_name.dart';
 import 'package:graduationproject/presantion/screens/profile_screen/profile/update_password/change_password.dart';
 import 'package:graduationproject/presantion/screens/profile_screen/profile/your_founded/your_found.dart';
@@ -24,6 +25,10 @@ class Profilepage extends StatelessWidget {
         } else if (state is Profilefaliouer) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(" pleas Login agin ")));
+        }
+        if (state is lougoutseacsess) {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => LoginScreen()));
         }
       },
       builder: (context, state) {
@@ -218,8 +223,7 @@ class Profilepage extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => YourLosts()));
+                                context.read<UpDateNameCubit>().logout();
                               },
                               child: Container(
                                 width: MediaQuery.of(context).size.width / 1.5,

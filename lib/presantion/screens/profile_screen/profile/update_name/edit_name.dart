@@ -60,7 +60,7 @@ class EditName extends StatelessWidget {
                           width: MediaQuery.of(context).size.width / 1,
                         ),
                         Positioned(
-                            bottom: 0,
+                            bottom: 20,
                             left: 50,
                             child: GestureDetector(
                               onTap: () {

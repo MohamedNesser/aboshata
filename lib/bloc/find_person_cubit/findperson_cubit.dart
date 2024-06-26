@@ -40,8 +40,7 @@ class FindpersonCubit extends Cubit<FindpersonState> {
             "address": addressController.text,
             ApiKeys.uploudimg: await uploadImageToAPI(profilepic!),
           });
-      final findpessonmodel = findPersonmodel!.message;
-      emit(Findpersonsucsess(message: findpessonmodel!));
+      emit(Findpersonsucsess(message: "SACSESSS"));
       return response.data;
     } on ServerException catch (e) {
       // emit(Findpersonfaliouer(errormassage: e.findpersonerror.errors![0].msg!));

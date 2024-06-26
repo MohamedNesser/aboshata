@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduationproject/bloc/mylost/cubit/mylost_cubit.dart';
 import 'package:graduationproject/bloc/mylost/cubit/mylost_state.dart';
 import 'package:graduationproject/bloc/search_cubit/cubit/search.dart';
+import 'package:graduationproject/presantion/screens/update_records/update_losts/update_screen_lost.dart';
 
 class YourLosts extends StatelessWidget {
   const YourLosts({Key? key}) : super(key: key);
@@ -156,7 +157,13 @@ class YourLosts extends StatelessWidget {
                                                     width: 40,
                                                   ),
                                                   IconButton(
-                                                      onPressed: () {},
+                                                      onPressed: () {
+                                                        Navigator.of(context).push(
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        UpdateLostsScreen()));
+                                                      },
                                                       icon: Icon(
                                                         Icons
                                                             .mode_edit_outline_outlined,

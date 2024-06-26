@@ -18,7 +18,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     try {
       emit(ResetPasswordloaded());
 
-      Response response = await api
+      final response = await api
           .put("https://lostcal.onrender.com/api/user/resetPassword", data: {
         ApiKeys.email: emailcontroller.text,
         "newPassword": passwordcontroller.text,

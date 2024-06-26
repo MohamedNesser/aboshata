@@ -19,6 +19,7 @@ import 'package:graduationproject/bloc/update_requrds/cubit/update_requrdes_cubi
 import 'package:graduationproject/data/api_services/dio_services.dart';
 import 'package:graduationproject/data/sherdp_referense/cash_helper.dart';
 import 'package:graduationproject/presantion/screens/Login_screen/login_page.dart';
+import 'package:graduationproject/presantion/screens/add_person/add_persone.dart';
 import 'package:graduationproject/presantion/screens/forgot_password/forgot_password.dart';
 import 'package:graduationproject/presantion/screens/profile_screen/profile/update_name/edit_name.dart';
 import 'package:graduationproject/presantion/screens/profile_screen/profile/update_password/change_password.dart';
@@ -92,7 +93,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: EditName(),
+          home: AddPersone(),
         ),
       ),
     );

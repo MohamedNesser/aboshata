@@ -21,30 +21,25 @@ class UpdateRequrdesCubit extends Cubit<UpdateRequrdesState> {
   final TextEditingController phoneNumbercontroller = TextEditingController();
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController agecontroller = TextEditingController();
-  List<File> pickedimages = [];
-  Future<void> picimage1(File image) async {
-    if (image != null) {
-      pickedimages.add(image);
-      emit(uploadimage());
-    }
+
+  List<File?> pickedimages = [null, null, null];
+
+  bool _isImagePickerActive = false;
+
+  bool get isImagePickerActive => _isImagePickerActive;
+
+  void setImagePickerActive(bool value) {
+    _isImagePickerActive = value;
+    emit(UpdateRequrdesUpdated());
   }
 
-  Future<void> picimage2(File image) async {
-    // File? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    if (image != null) {
+  void updateImage(int index, File image, File file) {
+    if (index < pickedimages.length) {
+      pickedimages[index] = image;
+    } else {
       pickedimages.add(image);
-      emit(uploadimage());
     }
-  }
-
-  Future<void> picimage3(File image) async {
-    // XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    if (image != null) {
-      pickedimages.add(image);
-      emit(uploadimage());
-    }
+    emit(UpdateRequrdesUpdated());
   }
 
   var dio = Dio();

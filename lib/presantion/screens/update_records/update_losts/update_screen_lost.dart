@@ -10,7 +10,6 @@ class UpdateLostsScreen extends StatelessWidget {
   const UpdateLostsScreen({
     Key? key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

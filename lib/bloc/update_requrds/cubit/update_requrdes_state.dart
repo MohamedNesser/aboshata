@@ -6,7 +6,11 @@ final class UpdateRequrdesInitial extends UpdateRequrdesState {}
 
 class UpdateRequrdesloaded extends UpdateRequrdesState {}
 
-class uploadimage extends UpdateRequrdesState {}
+class uploadimage1 extends UpdateRequrdesState {}
+
+class uploadimage2 extends UpdateRequrdesState {}
+
+class UpdateRequrdesUpdated extends UpdateRequrdesState {}
 
 class UpdateRequrdesseacsess extends UpdateRequrdesState {}
 

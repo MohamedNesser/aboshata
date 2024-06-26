@@ -46,4 +46,19 @@ class UpDateNameCubit extends Cubit<UpDateNameState> {
           errormassage: "You are not login, Please login to get access"));
     }
   }
+
+  Future logout() async {
+    try {
+      emit(lougoutloaded());
+
+      final response = await api.get(
+        "https://lostcal.onrender.com/api/user/logout",
+      );
+      emit(lougoutseacsess());
+      return response;
+    } on ServerException catch (e) {
+      emit(lougoutfaliouer(
+          errormassage: "You are not login, Please login to get access"));
+    }
+  }
 }

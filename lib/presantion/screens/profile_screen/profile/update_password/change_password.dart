@@ -45,6 +45,27 @@ class ChangePassword extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 1,
                     ),
                     Positioned(
+                      bottom: 20,
+                      left: 50,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Row(
+                          children: [
+                            Image.asset("assets/images/back.png"),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Back to profile ",
+                              style: TextStyle(fontSize: 24.sp),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
                       top: 20,
                       right: 20,
                       left: 20,
@@ -70,27 +91,6 @@ class ChangePassword extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          Positioned(
-            bottom: 20,
-            left: 50,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: Row(
-                children: [
-                  Image.asset("assets/images/back.png"),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Back to profile ",
-                    style: TextStyle(fontSize: 24.sp),
-                  )
-                ],
-              ),
-            ),
           ),
           Positioned(
             top: 24,
