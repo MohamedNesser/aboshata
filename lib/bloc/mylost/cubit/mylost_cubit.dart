@@ -28,7 +28,7 @@ class MyLostCubit extends Cubit<MyLostState> {
       emit(MyLostseacsess(mylost: Mylost.fromJson(response)));
       return response;
     } on ServerException catch (e) {
-      emit(MyLostfaliouer(errormassage: e.errorsearch.message!));
+      emit(MyLostfaliouer(errormassage: "your lost not found"));
     }
   }
 }

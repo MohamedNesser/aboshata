@@ -17,7 +17,7 @@ class ApiKeys {
   static String email = "email";
   static String password = "password";
   static String passwordConfirm = "passwordConfirm";
-
+  static String idd = 'id';
   static String id = 'id';
   static String token = 'token';
   static String message = 'message';

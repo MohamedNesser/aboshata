@@ -7,46 +7,72 @@ import 'package:graduationproject/bloc/update_requrds/cubit/update_requrdes_cubi
 import 'package:graduationproject/data/model/mylost_model/mylost.dart';
 import 'package:image_picker/image_picker.dart';
 
-class EditPic extends StatelessWidget {
+class EditPic extends StatefulWidget {
   const EditPic({
     Key? key,
+    required this.mylost,
+    required this.imagesList,
   }) : super(key: key);
 
+  final Mylost mylost;
+  final List<String> imagesList;
+
+  @override
+  _EditPicState createState() => _EditPicState();
+}
+
+class _EditPicState extends State<EditPic> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UpdateRequrdesCubit, UpdateRequrdesState>(
-      listener: (context, state) {},
+    final cubit = context.read<UpdateRequrdesCubit>();
+
+    return BlocBuilder<UpdateRequrdesCubit, UpdateRequrdesState>(
       builder: (context, state) {
-        final pickedImages = context.read<UpdateRequrdesCubit>().pickedimages;
+        final pickedImages = cubit.pickedimages;
 
         return Container(
-          child: Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(3, (index) {
-              return Column(
+            children: List.generate(widget.imagesList.length, (index) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 5),
-                    child: Container(
-                      child: pickedImages[index] != null
-                          ? Image(
-                              image: FileImage(File(pickedImages[index]!.path)),
-                              width: 50.w,
-                              height: 40.h,
-                              fit: BoxFit.fill,
-                            )
-                          : Image.network(
-                              "",
-                              width: 50.w,
-                              height: 40.h,
-                              fit: BoxFit.fill,
-                            ),
+                    child: GestureDetector(
+                      onTap: () {
+                        if (widget.imagesList.length > 0) {
+                          // Navigate or perform action with widget.imagesList[index]
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Container(
+                          child: (pickedImages.length > index &&
+                                  pickedImages[index] != null)
+                              ? Image(
+                                  image: FileImage(
+                                      File(pickedImages[index]!.path)),
+                                  width: 110.w,
+                                  height: 40.h,
+                                  fit: BoxFit.fill,
+                                )
+                              : Image.network(
+                                  widget.imagesList.length > index
+                                      ? widget.imagesList[index]
+                                      : "",
+                                  width: 100.w,
+                                  height: 40.h,
+                                  fit: BoxFit.contain,
+                                ),
+                        ),
+                      ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(0),
                     child: Container(
-                      height: 30.h,
+                      height: 40.h,
                       width: 60.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
@@ -57,19 +83,13 @@ class EditPic extends StatelessWidget {
                         ),
                         color: const Color(0xFF50C0E1),
                         onPressed: () async {
-                          final cubit = context.read<UpdateRequrdesCubit>();
-
-                          // Prevent multiple instances of the image picker
                           if (cubit.isImagePickerActive) return;
 
                           cubit.setImagePickerActive(true);
 
                           try {
-                            final pickedFile = await ImagePicker()
-                                .pickImage(source: ImageSource.gallery);
-                            if (pickedFile != null) {
-                              cubit.updateImage(
-                                  index, File(pickedFile.path), File(""));
+                            if (pickedImages != null) {
+                              cubit.updateRequrdesLost(index);
                             }
                           } finally {
                             cubit.setImagePickerActive(false);

@@ -18,3 +18,18 @@ class Myfoundfaliouer extends MyfoundState {
     required this.errormassage,
   });
 }
+
+class deleteloaded extends MyfoundState {}
+
+class deletesaucsess extends MyfoundState {
+  final Myfoundes myfound;
+
+  deletesaucsess({required this.myfound});
+}
+
+class deletefalouer extends MyfoundState {
+  String errormassage;
+  deletefalouer({
+    required this.errormassage,
+  });
+}

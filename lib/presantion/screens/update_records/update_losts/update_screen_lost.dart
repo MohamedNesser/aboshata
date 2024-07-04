@@ -9,71 +9,91 @@ import 'package:graduationproject/presantion/screens/update_records/update_losts
 class UpdateLostsScreen extends StatelessWidget {
   const UpdateLostsScreen({
     Key? key,
+    required this.mylost,
+    required this.id,
   }) : super(key: key);
+
+  final Mylost mylost;
+  final String id;
+
   @override
   Widget build(BuildContext context) {
+    final entry = mylost.result!.firstWhere((element) => element.id == id);
+
     return SafeArea(
-        child: Scaffold(
-      body: Stack(children: [
-        Column(
+      child: Scaffold(
+        body: Stack(
           children: [
-            Center(
-              child: MaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                color: Color(0xFF151528),
-                onPressed: () {},
-                child: Text(
-                  "Update records",
-                  style: TextStyle(fontSize: 20.sp, color: Colors.white),
+            Column(
+              children: [
+                Center(
+                  child: MaterialButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    color: Color(0xFF151528),
+                    onPressed: () {},
+                    child: Text(
+                      "Update records",
+                      style: TextStyle(fontSize: 20.sp, color: Colors.white),
+                    ),
+                  ),
                 ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 70, bottom: 20, left: 10, right: 10),
+              child: Stack(
+                children: [
+                  Image.asset(
+                    "assets/images/Rectangle 0.png",
+                    fit: BoxFit.fill,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  Column(
+                    children: [
+                      Stack(
+                        children: [
+                          Image.asset(
+                            "assets/images/Rectangle 53.png",
+                            fit: BoxFit.cover,
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.width / 2.4,
+                          ),
+                          Container(
+                            height: MediaQuery.of(context).size.width / 2.4,
+                            width: MediaQuery.of(context).size.width / 1.2,
+                            child: EditPic(
+                              mylost: mylost,
+                              imagesList: entry.img!,
+                            ),
+                          )
+                        ],
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 2,
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SingleChildScrollView(
+                              child: FormUpdateloster(
+                                mylost: mylost,
+                                id: id,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
         ),
-        Padding(
-          padding:
-              const EdgeInsets.only(top: 70, bottom: 20, left: 10, right: 10),
-          child: Stack(
-            children: [
-              Image.asset(
-                "assets/images/Rectangle 0.png",
-                fit: BoxFit.fill,
-                width: MediaQuery.of(context).size.width,
-              ),
-              Column(
-                children: [
-                  Stack(
-                    children: [
-                      Image.asset(
-                        "assets/images/Rectangle 53.png",
-                        fit: BoxFit.cover,
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.width / 3.2,
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.width / 3.2,
-                        width: MediaQuery.of(context).size.width / 1.2,
-                        child: EditPic(),
-                      )
-                    ],
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height / 2,
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SingleChildScrollView(child: FormUpdateloster()),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ]),
-    ));
+      ),
+    );
   }
 }

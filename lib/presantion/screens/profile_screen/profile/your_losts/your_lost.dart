@@ -7,8 +7,9 @@ import 'package:graduationproject/bloc/search_cubit/cubit/search.dart';
 import 'package:graduationproject/presantion/screens/update_records/update_losts/update_screen_lost.dart';
 
 class YourLosts extends StatelessWidget {
-  const YourLosts({Key? key}) : super(key: key);
-
+  const YourLosts({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MyLostCubit, MyLostState>(listener: (context, state) {
@@ -162,7 +163,15 @@ class YourLosts extends StatelessWidget {
                                                             MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
-                                                                        UpdateLostsScreen()));
+                                                                        UpdateLostsScreen(
+                                                                          mylost:
+                                                                              state.mylost,
+                                                                          id: state
+                                                                              .mylost
+                                                                              .result![index]
+                                                                              .id
+                                                                              .toString(), // Pass the id here
+                                                                        )));
                                                       },
                                                       icon: Icon(
                                                         Icons

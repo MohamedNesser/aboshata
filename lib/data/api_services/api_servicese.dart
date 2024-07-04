@@ -10,7 +10,7 @@ abstract class ApiServices {
       Map<String, dynamic>? quereyprameters,
       bool isFormData = false});
   Future patch(String path,
-      {Object? data,
+      {dynamic? data,
       Map<String, dynamic>? quereyprameters,
       bool isFormData = false});
 

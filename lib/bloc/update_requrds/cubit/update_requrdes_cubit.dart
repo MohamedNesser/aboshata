@@ -15,14 +15,14 @@ part 'update_requrdes_state.dart';
 
 class UpdateRequrdesCubit extends Cubit<UpdateRequrdesState> {
   UpdateRequrdesCubit(this.api) : super(UpdateRequrdesInitial());
-  final ApiServices api;
-  final TextEditingController namecontroller = TextEditingController();
-  final TextEditingController addresscontroller = TextEditingController();
-  final TextEditingController phoneNumbercontroller = TextEditingController();
-  final TextEditingController emailcontroller = TextEditingController();
-  final TextEditingController agecontroller = TextEditingController();
+  ApiServices api;
+  TextEditingController namecontroller = TextEditingController();
+  TextEditingController addresscontroller = TextEditingController();
+  TextEditingController phoneNumbercontroller = TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController agecontroller = TextEditingController();
 
-  List<File?> pickedimages = [null, null, null];
+  List<XFile?> pickedimages = [];
 
   bool _isImagePickerActive = false;
 
@@ -33,31 +33,36 @@ class UpdateRequrdesCubit extends Cubit<UpdateRequrdesState> {
     emit(UpdateRequrdesUpdated());
   }
 
-  void updateImage(int index, File image, File file) {
-    if (index < pickedimages.length) {
-      pickedimages[index] = image;
-    } else {
-      pickedimages.add(image);
+  void updateRequrdesLost(int index) async {
+    List<XFile> images = await ImagePicker().pickMultiImage();
+    if (images != null) {
+      pickedimages.addAll(images);
+      emit(UpdateRequrdesUpdated());
     }
-    emit(UpdateRequrdesUpdated());
   }
 
   var dio = Dio();
-  Future<void> uploadData({required List<String> imagepaths}) async {
+
+  Future<void> uploadData(List<String> imagesList) async {
     FormData formData = FormData();
-    // Add images to FormData
-    for (var file in imagepaths) {
+
+    // دمج pickedimages و imagesList في قائمة واحدة
+
+    // إضافة الصور إلى FormData بنفس المفتاح 'img'
+    for (var file in imagesList) {
       formData.files.add(MapEntry(
-          'img',
-          await MultipartFile.fromFile(file,
-              contentType: MediaType("image", "jpeg"))));
+        'img', // استخدام نفس المفتاح لكل صورة
+        await MultipartFile.fromFile(file,
+            contentType: MediaType("image", "jpeg")),
+      ));
     }
-    // Add other parameters to FormData
+
+    // إضافة المعلمات الأخرى إلى FormData
     formData.fields.addAll([
       MapEntry(ApiKeys.email, emailcontroller.text),
       MapEntry(ApiKeys.name, namecontroller.text),
-      MapEntry(ApiKeys.phoneNumber, phoneNumbercontroller.text),
-      MapEntry(ApiKeys.age, addresscontroller.text),
+      MapEntry(ApiKeys.phoneNumber, "01270113264"),
+      MapEntry(ApiKeys.age, agecontroller.text),
       MapEntry(ApiKeys.address, addresscontroller.text),
     ]);
 
@@ -65,22 +70,37 @@ class UpdateRequrdesCubit extends Cubit<UpdateRequrdesState> {
       'Authorization': 'Bearer ${CacheHelper().getData(key: ApiKeys.token)}',
     };
 
-    // Add headers to Dio instance
     dio.options.headers.addAll(headers);
 
-    // Make POST request
+    // طباعة لتصحيح الأخطاء
+    print('Uploading data with fields: ${formData.fields}');
+    print(
+        'Uploading data with files: ${formData.files.map((file) => file.key).toList()}');
+
+    // إجراء طلب POST
     try {
       emit(UpdateRequrdesloaded());
 
-      Response response = await dio.post(
-          "https://lostcal.onrender.com/Api/mylost",
-          data: formData,
-          options: Options(contentType: 'multipart/form-data'));
+      final response = await dio.patch(
+        "https://lostcal.onrender.com/api/mylost/66805999f952eb78fef1a0f3",
+        data: formData,
+        options: Options(contentType: 'multipart/form-data'),
+      );
 
-      emit(UpdateRequrdesseacsess());
-      return response.data;
-    } on ServerException catch (e) {
-      emit(UpdateRequrdesfaliouer(errormassage: "uploaded"));
+      print('Response status: ${response.statusCode}');
+      print('Response data: ${response.data}');
+
+      if (response.statusCode == 200) {
+        emit(UpdateRequrdesseacsess());
+      } else {
+        emit(UpdateRequrdesfaliouer(errormassage: "Failed to upload data"));
+      }
+    } on DioError catch (e) {
+      print('DioError: ${e.response?.data}');
+      emit(UpdateRequrdesfaliouer(errormassage: "DioError: ${e.message}"));
+    } catch (e) {
+      print('Unknown error: $e');
+      emit(UpdateRequrdesfaliouer(errormassage: "Unknown error: $e"));
     }
   }
 }

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduationproject/bloc/myfound/cubit/myfound_cubit.dart';
-import 'package:graduationproject/bloc/mylost/cubit/mylost_cubit.dart';
-import 'package:graduationproject/bloc/mylost/cubit/mylost_state.dart';
-import 'package:graduationproject/data/model/mylost_model/mylost.dart';
+import 'package:graduationproject/presantion/screens/update_records/update_founded/form_update_found.dart';
+import 'package:graduationproject/presantion/screens/update_records/update_founded/update_screen_found.dart';
+import 'package:graduationproject/presantion/screens/update_records/update_losts/edit_pic.dart';
 
 class YourFound extends StatelessWidget {
   const YourFound({Key? key}) : super(key: key);
@@ -13,10 +13,12 @@ class YourFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<MyfoundCubit, MyfoundState>(
       listener: (context, state) {
-        if (state is Myfoundseacsess) {
+        if (state is deletesaucsess) {
+          context.read<MyfoundCubit>().GetMyfound();
+          Navigator.pop(context);
         } else if (state is Myfoundfaliouer) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(" pleas Login agin ")));
+              .showSnackBar(SnackBar(content: Text("Please log in again.")));
         }
       },
       builder: (context, state) {
@@ -40,7 +42,7 @@ class YourFound extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           color: Colors.white,
                           onPressed: () {
-                            context.read<MyfoundCubit>().GetMyLost();
+                            context.read<MyfoundCubit>().GetMyfound();
                           },
                           child: Text(
                             "Your founds",
@@ -56,10 +58,12 @@ class YourFound extends StatelessWidget {
                       padding: EdgeInsets.only(left: 40, right: 40),
                       child: state is Myfoundloaded
                           ? CircularProgressIndicator()
-                          : state is Myfoundseacsess
+                          : state is Myfoundseacsess &&
+                                  state.myfound.result != null
                               ? ListView.builder(
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
+                                    var item = state.myfound.result![index];
                                     return Padding(
                                       padding: const EdgeInsets.only(
                                           top: 20, bottom: 20),
@@ -86,8 +90,7 @@ class YourFound extends StatelessWidget {
                                                             BorderRadius
                                                                 .circular(80)),
                                                     child: Image.network(
-                                                      (state.myfound
-                                                          .result![index].img!),
+                                                      item.img!,
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
@@ -101,22 +104,22 @@ class YourFound extends StatelessWidget {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "Name :${state.myfound.result![index].name}",
+                                                    "Name: ${item.name}",
                                                     style: TextStyle(
                                                         color: Colors.black),
                                                   ),
                                                   Text(
-                                                    "Addres : ${state.myfound.result![index].address}",
+                                                    "Address: ${item.address}",
                                                     style: TextStyle(
                                                         color: Colors.black),
                                                   ),
                                                   Text(
-                                                    "Phone :${state.myfound.result![index].phoneNumber}",
+                                                    "Phone: ${item.phoneNumber}",
                                                     style: TextStyle(
                                                         color: Colors.black),
                                                   ),
                                                   Text(
-                                                    "Email : ${state.myfound.result![index].email}",
+                                                    "Email: ${item.email}",
                                                     style: TextStyle(
                                                         color: Colors.black),
                                                   ),
@@ -126,7 +129,17 @@ class YourFound extends StatelessWidget {
                                                         width: 40,
                                                       ),
                                                       IconButton(
-                                                          onPressed: () {},
+                                                          onPressed: () {
+                                                            Navigator.of(context).push(
+                                                                MaterialPageRoute(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            UpdatefoundScreen(
+                                                                              itemes: state.myfound,
+                                                                              id: state.myfound.result![index].id.toString(),
+                                                                              index: index,
+                                                                            )));
+                                                          },
                                                           icon: Icon(
                                                             Icons
                                                                 .mode_edit_outline_outlined,
@@ -148,9 +161,14 @@ class YourFound extends StatelessWidget {
                                                                           20)),
                                                           color:
                                                               Color(0xFF50C0E1),
-                                                          onPressed: () {},
+                                                          onPressed: () {
+                                                            context
+                                                                .read<
+                                                                    MyfoundCubit>()
+                                                                .deletemyfound();
+                                                          },
                                                           child: Text(
-                                                            " found ",
+                                                            "found",
                                                             style: TextStyle(
                                                                 fontSize: 10.sp,
                                                                 color: Colors

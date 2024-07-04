@@ -1,33 +1,38 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduationproject/bloc/update_requrds/cubit/update_requrdes_cubit.dart';
-import 'package:graduationproject/data/model/mylost_model/mylost.dart';
-import 'package:graduationproject/presantion/screens/profile_screen/profile/your_losts/your_lost.dart';
 
-class FormUpdateloster extends StatefulWidget {
-  FormUpdateloster({
+import 'package:graduationproject/bloc/update_founde_cubit/cubit/update_foundes_cubit.dart';
+import 'package:graduationproject/bloc/update_requrds/cubit/update_requrdes_cubit.dart';
+import 'package:graduationproject/data/model/myfound_model/myfound_model.dart';
+import 'package:graduationproject/data/model/myfound_model/myfound_response.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/your_founded/your_found.dart';
+
+class FormUpdateFound extends StatefulWidget {
+  final Myfoundes item;
+  String id;
+  final int index;
+  FormUpdateFound({
     Key? key,
-    required this.mylost,
+    required this.item,
     required this.id,
+    required this.index,
   }) : super(key: key);
 
-  final Mylost mylost;
-  final String id;
-
   @override
-  State<FormUpdateloster> createState() => _FormUpdatelosterState();
+  State<FormUpdateFound> createState() => _FormUpdateFoundState();
 }
 
-class _FormUpdatelosterState extends State<FormUpdateloster> {
+class _FormUpdateFoundState extends State<FormUpdateFound> {
   final _globalKey = GlobalKey<FormState>();
 
-  // Controllers for telds to hold initial values
   // late TextEditingController _nameController;
   // late TextEditingController _addressController;
   // late TextEditingController _phoneNumberController;
   // late TextEditingController _emailController;
-  // late TextEditingController _ageController;
 
   @override
   void initState() {
@@ -35,39 +40,34 @@ class _FormUpdatelosterState extends State<FormUpdateloster> {
 
     // Find the specific entry by id
     final entry =
-        widget.mylost.result!.firstWhere((element) => element.id == widget.id);
+        widget.item.result!.firstWhere((element) => element.id == widget.id);
 
-    // Initialize controllers with initial values from the found entry
-    context.read<UpdateRequrdesCubit>().namecontroller =
+    context.read<UpdateFoundesCubit>().namecontroller =
         TextEditingController(text: entry.name);
-    context.read<UpdateRequrdesCubit>().addresscontroller =
+    context.read<UpdateFoundesCubit>().addresscontroller =
         TextEditingController(text: entry.address);
-    context.read<UpdateRequrdesCubit>().phoneNumbercontroller =
+    context.read<UpdateFoundesCubit>().phoneNumbercontroller =
         TextEditingController(text: entry.phoneNumber.toString());
-    context.read<UpdateRequrdesCubit>().emailcontroller =
+    context.read<UpdateFoundesCubit>().emailcontroller =
         TextEditingController(text: entry.email);
-    context.read<UpdateRequrdesCubit>().agecontroller =
-        TextEditingController(text: entry.age.toString());
   }
 
   @override
   void dispose() {
-    // Dispose controllers when not needed to avoid memory leaks
-    context.read<UpdateRequrdesCubit>().namecontroller.dispose();
-    context.read<UpdateRequrdesCubit>().addresscontroller.dispose();
-    context.read<UpdateRequrdesCubit>().phoneNumbercontroller.dispose();
-    context.read<UpdateRequrdesCubit>().emailcontroller.dispose();
-    context.read<UpdateRequrdesCubit>().agecontroller.dispose();
+    context.read<UpdateFoundesCubit>().namecontroller.dispose();
+    context.read<UpdateFoundesCubit>().phoneNumbercontroller.dispose();
+    context.read<UpdateFoundesCubit>().addresscontroller.dispose();
+    context.read<UpdateFoundesCubit>().emailcontroller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UpdateRequrdesCubit, UpdateRequrdesState>(
+    return BlocConsumer<UpdateFoundesCubit, UpdateFoundesState>(
       listener: (context, state) {
-        if (state is UpdateRequrdesseacsess) {
+        if (state is Updatefoundseacsess) {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => YourLosts()));
+              .push(MaterialPageRoute(builder: (context) => YourFound()));
         }
       },
       builder: (context, state) {
@@ -81,26 +81,22 @@ class _FormUpdatelosterState extends State<FormUpdateloster> {
                   children: [
                     buildTextField(
                         "Name",
-                        context.read<UpdateRequrdesCubit>().namecontroller,
+                        context.read<UpdateFoundesCubit>().namecontroller,
                         TextInputType.text),
                     buildTextField(
                         "Address",
-                        context.read<UpdateRequrdesCubit>().addresscontroller,
+                        context.read<UpdateFoundesCubit>().addresscontroller,
                         TextInputType.text),
                     buildTextField(
                         "Phone Number",
                         context
-                            .read<UpdateRequrdesCubit>()
+                            .read<UpdateFoundesCubit>()
                             .phoneNumbercontroller,
                         TextInputType.phone),
                     buildTextField(
                         "Email",
-                        context.read<UpdateRequrdesCubit>().emailcontroller,
+                        context.read<UpdateFoundesCubit>().emailcontroller,
                         TextInputType.emailAddress),
-                    buildTextField(
-                        "Age",
-                        context.read<UpdateRequrdesCubit>().agecontroller,
-                        TextInputType.number),
                     SizedBox(height: 20.h),
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 2.5,
@@ -108,30 +104,25 @@ class _FormUpdatelosterState extends State<FormUpdateloster> {
                         onPressed: () {
                           if (_globalKey.currentState!.validate()) {
                             String updatedName = context
-                                .read<UpdateRequrdesCubit>()
+                                .read<UpdateFoundesCubit>()
                                 .namecontroller
                                 .text
                                 .trim();
                             String updatedAddress = context
-                                .read<UpdateRequrdesCubit>()
+                                .read<UpdateFoundesCubit>()
                                 .addresscontroller
                                 .text
                                 .trim();
                             String updatedPhoneNumber = context
-                                .read<UpdateRequrdesCubit>()
+                                .read<UpdateFoundesCubit>()
                                 .phoneNumbercontroller
                                 .text
                                 .trim();
                             String updatedEmail = context
-                                .read<UpdateRequrdesCubit>()
+                                .read<UpdateFoundesCubit>()
                                 .emailcontroller
                                 .text
                                 .trim();
-                            int updatedAge = int.parse(context
-                                .read<UpdateRequrdesCubit>()
-                                .agecontroller
-                                .text
-                                .trim());
 
                             // Handle update logic here
                           }
@@ -149,15 +140,11 @@ class _FormUpdatelosterState extends State<FormUpdateloster> {
                               GestureDetector(
                                 onTap: () {
                                   context
-                                      .read<UpdateRequrdesCubit>()
-                                      .uploadData(context
-                                          .read<UpdateRequrdesCubit>()
-                                          .pickedimages
-                                          .map((e) => e!.path)
-                                          .toList());
+                                      .read<UpdateFoundesCubit>()
+                                      .updatemyfound(widget.index);
                                 },
-                                child: state is UpdateRequrdesloaded
-                                    ? Text("loadedddd")
+                                child: state is UpdateFoundesloaded
+                                    ? Text("Loaded")
                                     : Text(
                                         "Update",
                                         style: TextStyle(

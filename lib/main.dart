@@ -13,6 +13,7 @@ import 'package:graduationproject/bloc/reset_password/cubit/reset_password_cubit
 import 'package:graduationproject/bloc/search_cubit/cubit/search.dart';
 import 'package:graduationproject/bloc/secret_code/cubit/secret_code_cubit.dart';
 import 'package:graduationproject/bloc/signup/cubit/signup_cubit.dart';
+import 'package:graduationproject/bloc/update_founde_cubit/cubit/update_foundes_cubit.dart';
 import 'package:graduationproject/bloc/update_name_cubit/cubit.dart';
 import 'package:graduationproject/bloc/update_password.dart/update_pass_cubit.dart';
 import 'package:graduationproject/bloc/update_requrds/cubit/update_requrdes_cubit.dart';
@@ -20,7 +21,9 @@ import 'package:graduationproject/data/api_services/dio_services.dart';
 import 'package:graduationproject/data/sherdp_referense/cash_helper.dart';
 import 'package:graduationproject/presantion/screens/Login_screen/login_page.dart';
 import 'package:graduationproject/presantion/screens/add_person/add_persone.dart';
+import 'package:graduationproject/presantion/screens/find_your_lost/find_home_screen.dart';
 import 'package:graduationproject/presantion/screens/forgot_password/forgot_password.dart';
+import 'package:graduationproject/presantion/screens/profile_screen/profile/profile_screen.dart';
 import 'package:graduationproject/presantion/screens/profile_screen/profile/update_name/edit_name.dart';
 import 'package:graduationproject/presantion/screens/profile_screen/profile/update_password/change_password.dart';
 import 'package:graduationproject/presantion/screens/profile_screen/profile/your_founded/your_found.dart';
@@ -32,6 +35,7 @@ import 'package:graduationproject/presantion/screens/signup_screen/signup_screen
 import 'package:graduationproject/presantion/screens/splash_screen/splash_widgets/splash.dart';
 import 'package:graduationproject/presantion/screens/update_password/update_password_screen.dart';
 import 'package:graduationproject/presantion/screens/update_records/update_losts/update_screen_lost.dart';
+import 'package:graduationproject/presantion/screens/user/user_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -90,10 +94,16 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => MatchesCubit(DioServices(Dio())),
           ),
+          BlocProvider(
+            create: (context) => UpdateRequrdesCubit(DioServices(Dio())),
+          ),
+          BlocProvider(
+            create: (context) => UpdateFoundesCubit(DioServices(Dio())),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: AddPersone(),
+          home: BottomNavBarscreen(),
         ),
       ),
     );

@@ -44,8 +44,9 @@ class DioServices extends ApiServices {
       Map<String, dynamic>? quereyprameters,
       bool isFormData = false}) async {
     try {
-      var response =
-          await dio.patch(path, data: data, queryParameters: quereyprameters);
+      var response = await dio.patch(path,
+          data: isFormData ? FormData.fromMap(data) : data,
+          queryParameters: quereyprameters);
     } on DioException catch (e) {
       handleDioExceptions(e);
     }
